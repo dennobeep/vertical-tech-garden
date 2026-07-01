@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Vertical Tech Garden - Get in touch for vertical farming systems, installation, training, and consultancy in Kenya.">
+    <title>Contact Us | Vertical Tech Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('assets/Multistorey Garden/MG1.png');
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.85) 0%, rgba(46,79,46,0.6) 50%, rgba(27,58,27,0.7) 100%);
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .page-hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--green-200);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .page-hero-title .text-accent { color: var(--green-300); }
+        .page-hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .page-contact { padding-top: 90px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { font-family: var(--font-display); font-size: 2.5rem; color: var(--green-900); margin-bottom: 12px; }
+        .page-header p { color: var(--gray-600); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+        /* --- Live status badge --- */
+        .live-status { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px 7px 12px; border-radius: 100px; font-size: 0.82rem; font-weight: 600; margin-bottom: 20px; border: 1px solid; }
+        .live-status .dot { width: 8px; height: 8px; border-radius: 50%; position: relative; }
+        .live-status .dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; opacity: 0.35; animation: pulseDot 1.8s ease-out infinite; }
+        .live-status.is-open { color: var(--green-700); background: var(--green-50); border-color: var(--green-200); }
+        .live-status.is-open .dot { background: var(--green-600); }
+        .live-status.is-open .dot::after { background: var(--green-600); }
+        .live-status.is-closed { color: var(--earth-600); background: var(--earth-100); border-color: var(--earth-200); }
+        .live-status.is-closed .dot { background: var(--earth-600); }
+        .live-status.is-closed .dot::after { background: var(--earth-600); animation: none; }
+        @keyframes pulseDot { 0% { transform: scale(1); opacity: 0.35; } 100% { transform: scale(2.4); opacity: 0; } }
+
+        /* --- Quick contact chips --- */
+        .quick-contact { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin: 0 auto 56px; }
+        .quick-contact a { display: flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 100px; background: var(--white); border: 1px solid var(--gray-100); color: var(--green-900); font-size: 0.88rem; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .quick-contact a i { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; background: var(--green-50); color: var(--green-700); flex-shrink: 0; }
+        .quick-contact a:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--green-200); }
+        .quick-contact a.qc-whatsapp:hover i { background: #25D366; color: var(--white); }
+        .quick-contact a.qc-call:hover i { background: var(--green-700); color: var(--white); }
+        .quick-contact a.qc-email:hover i { background: var(--green-900); color: var(--white); }
+
+        /* --- About-page style elements --- */
+        .page-deco-header { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .page-deco-header .deco-line { width: 40px; height: 2px; background: var(--green-500); border-radius: 2px; }
+        .page-deco-header .deco-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--green-50); border-radius: 50%; color: var(--green-600); font-size: 1.1rem; border: 2px solid var(--green-200); }
+        .section-kicker { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--green-700); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-kicker::before, .section-kicker::after { content: ''; width: 26px; height: 2px; background: var(--green-500); display: inline-block; }
+
+        /* --- Contact info quick-stats bar --- */
+        .contact-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 56px; padding: 32px 40px; background: var(--green-50); border-radius: var(--radius-md); border: 1px solid var(--green-100); }
+        .cs-item { text-align: center; }
+        .cs-number { display: block; font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--green-700); line-height: 1; margin-bottom: 4px; }
+        .cs-label { font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
+
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; margin-bottom: 60px; }
+        .contact-info-box { display: flex; flex-direction: column; gap: 24px; }
+        .contact-card { display: flex; gap: 20px; padding: 24px; background: var(--off-white); border-radius: var(--radius-md); border: 1px solid var(--gray-100); transition: var(--transition); }
+        .contact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .contact-card-icon { width: 48px; height: 48px; min-width: 48px; border-radius: 50%; background: var(--green-50); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--green-700); border: 2px solid var(--green-200); }
+        .contact-card h4 { font-size: 0.95rem; color: var(--green-900); margin-bottom: 4px; }
+        .contact-card p, .contact-card a { color: var(--gray-600); font-size: 0.9rem; line-height: 1.5; text-decoration: none; }
+        .contact-card a:hover { color: var(--green-700); }
+        .contact-social { display: flex; gap: 12px; padding: 24px; background: var(--off-white); border-radius: var(--radius-md); border: 1px solid var(--gray-100); }
+        .contact-social a { width: 44px; height: 44px; border-radius: 50%; background: var(--green-50); display: flex; align-items: center; justify-content: center; color: var(--green-700); font-size: 1.2rem; transition: var(--transition); text-decoration: none; border: 2px solid var(--green-200); }
+        .contact-social a:hover { background: var(--green-700); color: var(--white); transform: translateY(-2px); border-color: var(--green-700); }
+        .contact-form-box { background: var(--white); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--gray-100); box-shadow: 0 8px 32px rgba(27,58,27,0.06); }
+        .contact-form-box h3 { font-size: 1.3rem; color: var(--green-900); margin-bottom: 24px; }
+        .contact-form-box .form-group { margin-bottom: 16px; }
+        .contact-form-box input, .contact-form-box select, .contact-form-box textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.9rem; color: var(--gray-800); background: var(--white); transition: var(--transition); }
+        .contact-form-box input:focus, .contact-form-box select:focus, .contact-form-box textarea:focus { outline: none; border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(91,140,90,0.1); }
+        .contact-form-box .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .contact-form-box .form-error { font-size: 0.8rem; color: #e74c3c; margin-top: 4px; display: none; }
+        .contact-form-box .form-error.visible { display: block; }
+        .contact-form-box .form-status { padding: 12px 16px; border-radius: 5px; font-size: 0.9rem; display: none; margin-bottom: 16px; }
+        .contact-form-box .form-status.visible { display: block; }
+        .contact-form-box .form-status.status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .contact-form-box .form-status.status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .contact-map { margin-bottom: 60px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--gray-100); box-shadow: 0 8px 32px rgba(27,58,27,0.08); }
+        .contact-map iframe { width: 100%; height: 350px; display: block; border: none; }
+
+        /* --- FAQ section (reuses homepage .faq-list styling from style.css) --- */
+        .contact-faq { margin-bottom: 60px; }
+        .contact-faq .faq { padding: 0; background: none; }
+        .faq-cta { text-align: center; margin-top: 36px; }
+        .faq-cta p { color: var(--gray-600); margin-bottom: 16px; font-size: 0.95rem; }
+
+        /* --- Form trust microcopy --- */
+        .form-box-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+        .form-reply-pill { font-size: 0.74rem; font-weight: 600; color: var(--green-700); background: var(--green-50); padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+        .form-privacy-note { display: flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--gray-400); font-size: 0.78rem; }
+        .form-privacy-note i { color: var(--green-600); }
+
+        /* --- Map upgrades --- */
+        .contact-map { position: relative; }
+        .contact-map-directions { position: absolute; top: 16px; right: 16px; z-index: 2; display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; background: var(--white); color: var(--green-900); font-size: 0.85rem; font-weight: 600; text-decoration: none; border-radius: var(--radius-sm); box-shadow: var(--shadow-md); transition: var(--transition); }
+        .contact-map-directions:hover { background: var(--green-700); color: var(--white); }
+
+        .contact-card, .contact-social, .contact-form-box, .contact-map { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .contact-card.visible, .contact-social.visible, .contact-form-box.visible, .contact-map.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 992px) { .contact-wrap { grid-template-columns: 1fr; } .faq-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .page-hero-title { font-size: 2.2rem; } .page-hero { height: 40vh; min-height: 300px; } .page-contact { padding-top: 56px; } .contact-form-box { padding: 24px; } .contact-form-box .form-row { grid-template-columns: 1fr; } .contact-stats { gap: 20px; padding: 24px; } .quick-contact { gap: 10px; } .quick-contact a { padding: 11px 16px; font-size: 0.82rem; } .contact-map-directions { position: static; margin: 0 0 0 0; width: 100%; justify-content: center; border-radius: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar" id="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></span>
+                <span><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></span>
+            </div>
+            <div class="topbar-right">
+                <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-has-mega">
+                    <a href="javascript:void(0)">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="nav-mega">
+                        <div class="nav-mega-inner">
+                            <!-- Left sidebar -->
+                            <div class="nav-mega-sidebar">
+                                <div>
+                                    <span class="nav-mega-sidebar-label">Our Range</span>
+                                    <p class="nav-mega-sidebar-title">Grow More<br>With Less</p>
+                                    <p class="nav-mega-sidebar-desc">Five proven systems — from compact home setups to full commercial installations.</p>
+                                    <a href="products.html" class="nav-mega-sidebar-cta">Browse all products <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="nav-mega-stats">
+                                    <span class="nav-mega-stat"><i class="fas fa-seedling"></i> 10× more yield per m²</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-tint"></i> Up to 80% less water</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-map-marker-alt"></i> Nairobi-based &amp; local support</span>
+                                </div>
+                            </div>
+                            <!-- Right content panel -->
+                            <div class="nav-mega-content">
+                                <div class="nav-mega-content-header">
+                                    <span class="nav-mega-content-label">Products</span>
+                                    <span class="nav-mega-content-count">5 Systems</span>
+                                </div>
+                                <div class="nav-mega-grid">
+                                    <a href="products.html#product-multistorey" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-layer-group"></i></span>
+                                        <span class="nav-mega-title">Multistorey Gardens</span>
+                                        <span class="nav-mega-desc">Multi-level systems for maximum yield in compact plots</span>
+                                    </a>
+                                    <a href="products.html#product-tower" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-arrow-up"></i></span>
+                                        <span class="nav-mega-title">Tower Gardens</span>
+                                        <span class="nav-mega-desc">Space-saving vertical towers for balconies &amp; rooftops</span>
+                                    </a>
+                                    <a href="products.html#product-growbag" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-shopping-bag"></i></span>
+                                        <span class="nav-mega-title">Vertical Grow Bags</span>
+                                        <span class="nav-mega-desc">Flexible growing bags for walls, fences &amp; corridors</span>
+                                    </a>
+                                    <a href="products.html#product-irrigation" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-tint"></i></span>
+                                        <span class="nav-mega-title">Irrigation Kits</span>
+                                        <span class="nav-mega-desc">Automated drip systems for worry-free watering</span>
+                                    </a>
+                                    <a href="products.html#product-nft" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-water"></i></span>
+                                        <span class="nav-mega-title">NFT Systems</span>
+                                        <span class="nav-mega-desc">Nutrient Film Technique for soil-free commercial growing</span>
+                                    </a>
+                                </div>
+                                <div class="nav-mega-footer">
+                                    <span class="nav-mega-footer-note"><i class="fas fa-truck"></i> Delivered &amp; installed across Kenya</span>
+                                    <a href="index.html#calculator" class="nav-mega-footer-link">Calculate ROI <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Start Growing</a></li>
+                <li><a href="#" class="nav-cart" id="cartBtn"><i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cartCount">0</span></a></li>
+            </ul>
+            <!-- Cart Overlay -->
+            <div class="cart-overlay" id="cartOverlay"></div>
+            <!-- Cart Drawer -->
+            <div class="cart-drawer" id="cartDrawer">
+                <div class="cart-drawer-header">
+                    <h3>Shopping Cart</h3>
+                    <span id="cartItemCount">0 items</span>
+                    <button class="cart-drawer-close" id="cartClose"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="cart-drawer-body" id="cartBody">
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <strong id="cartTotal">KSh 0</strong>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-outline" id="cartClear">Clear</button>
+                        <button class="btn btn-primary" id="cartCheckout">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-tag">Get in Touch</span>
+            <h1 class="page-hero-title">Contact <span class="text-accent">Us</span></h1>
+            <p class="page-hero-subtitle">Ready to start your vertical farming journey? Reach out and we'll help you grow.</p>
+        </div>
+    </section>
+
+    <section class="section page-contact">
+        <div class="container">
+
+            <div class="page-header">
+                <div class="page-deco-header">
+                    <div class="deco-line"></div>
+                    <div class="deco-icon"><i class="fas fa-paper-plane"></i></div>
+                    <div class="deco-line"></div>
+                </div>
+                <div class="section-kicker">Let's Connect</div>
+                <h1>How Can We <span class="text-accent">Help</span>?</h1>
+                <p>Tell us about your space and goals, or pick a channel below — our team usually replies within a couple of hours.</p>
+            </div>
+
+            <div style="text-align:center;">
+                <span class="live-status" id="liveStatus">
+                    <span class="dot"></span>
+                    <span id="liveStatusText">Checking availability…</span>
+                </span>
+            </div>
+
+            <div class="quick-contact">
+                <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="qc-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                <a href="tel:0706035470" class="qc-call"><i class="fas fa-phone-alt"></i> Call 0706 035 470</a>
+                <a href="mailto:info@verticaltechgarden.co.ke" class="qc-email"><i class="fas fa-envelope"></i> Email Us</a>
+            </div>
+
+            <div class="contact-stats">
+                <div class="cs-item">
+                    <span class="cs-number stat-number" data-target="500" data-suffix="+">0</span>
+                    <span class="cs-label">Farms Set Up</span>
+                </div>
+                <div class="cs-item">
+                    <span class="cs-number">24h</span>
+                    <span class="cs-label">Response Time</span>
+                </div>
+                <div class="cs-item">
+                    <span class="cs-number stat-number" data-target="47" data-suffix="">0</span>
+                    <span class="cs-label">Counties Served</span>
+                </div>
+                <div class="cs-item">
+                    <span class="cs-number">8AM–6PM</span>
+                    <span class="cs-label">Mon – Sat</span>
+                </div>
+            </div>
+
+            <div class="contact-wrap">
+                <div class="contact-info-box">
+                    <div class="contact-card" style="transition-delay:0.05s;">
+                        <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p><a href="tel:0706035470">0706 035 470</a></p>
+                            <p style="font-size:0.8rem;color:var(--gray-400);">Mon - Sat: 8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-card" style="transition-delay:0.1s;">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p><a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></p>
+                            <p style="font-size:0.8rem;color:var(--gray-400);">We reply within 24 hours</p>
+                        </div>
+                    </div>
+                    <div class="contact-card" style="transition-delay:0.15s;">
+                        <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p>Olekasasi, Ongata Rongai</p>
+                            <p style="font-size:0.8rem;color:var(--gray-400);">Appointments preferred</p>
+                        </div>
+                    </div>
+                    <div class="contact-card" style="transition-delay:0.2s;">
+                        <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Saturday</p>
+                            <p style="font-size:0.8rem;color:var(--gray-400);">8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-social" style="transition-delay:0.25s;">
+                        <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/254706035470" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <div class="form-box-head">
+                        <h3 style="margin-bottom:0;">Send Us a Message</h3>
+                        <span class="form-reply-pill"><i class="fas fa-bolt"></i> Avg. reply in 2 hrs</span>
+                    </div>
+                    <form id="contactForm" novalidate>
+                        <div style="display:none" aria-hidden="true">
+                            <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
+                                <span class="form-error" id="nameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
+                                <span class="form-error" id="emailError"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number (e.g. 0712345678)" autocomplete="tel">
+                            <span class="form-error" id="phoneError"></span>
+                        </div>
+                        <div class="form-group">
+                            <select id="interest" name="interest">
+                                <option value="">I'm interested in...</option>
+                                <option value="multistorey">Multistorey Garden</option>
+                                <option value="tower">Tower Garden</option>
+                                <option value="growbag">Vertical Grow Bags</option>
+                                <option value="nft">NFT System</option>
+                                <option value="irrigation">Irrigation Kits</option>
+                                <option value="commercial">Commercial/Institutional Project</option>
+                                <option value="training">Training & Consultancy</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="form-error" id="interestError"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project or ask a question..." required></textarea>
+                            <span class="form-error" id="messageError"></span>
+                        </div>
+                        <div class="form-status" id="formStatus"></div>
+                        <button type="submit" class="btn btn-primary btn-block" id="formSubmitBtn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        <p class="form-privacy-note"><i class="fas fa-lock"></i> Your details are only used to respond to your enquiry — never shared or sold.</p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="contact-map">
+                <a class="contact-map-directions" href="https://www.google.com/maps/dir/?api=1&destination=Ongata+Rongai,+Kenya" target="_blank" rel="noopener"><i class="fas fa-diamond-turn-right"></i> Get Directions</a>
+                <iframe src="https://www.google.com/maps?q=Olekasasi,+Ongata+Rongai,+Kenya&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vertical Tech Garden Location"></iframe>
+            </div>
+
+            <!-- FAQ Section (homepage FAQ style) -->
+            <div class="contact-faq" id="faq">
+                <div class="section-header">
+                    <div class="faq-deco">
+                        <span class="faq-deco-line"></span>
+                        <span class="faq-deco-icon"><i class="fas fa-question"></i></span>
+                        <span class="faq-deco-line"></span>
+                    </div>
+                    <span class="section-tag">Common Questions</span>
+                    <h2 class="section-title">Frequently Asked <span class="text-accent">Questions</span></h2>
+                    <p class="section-desc">Everything you need to know before reaching out or placing an order.</p>
+                </div>
+
+                <div class="faq-list">
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-clock faq-q-icon"></i>
+                            <h3>How quickly will you respond to my enquiry?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We aim to reply to every message within 2 hours during business hours, and within 24 hours at most. For the fastest response, message us directly on WhatsApp using the button above.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-comments faq-q-icon"></i>
+                            <h3>What's the best way to reach you?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>WhatsApp is the quickest way to get a response, especially for quick questions or photos of your space. For detailed project enquiries, the contact form lets us capture all the details we need to prepare an accurate quote.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-file-invoice-dollar faq-q-icon"></i>
+                            <h3>Can I get a quote before visiting your location?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes — share your space dimensions, location, and what you'd like to grow through the form or WhatsApp, and we'll send a tailored quote without you needing to visit us first. A site visit is only needed for large commercial installations.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-map-marker-alt faq-q-icon"></i>
+                            <h3>Do I need to book an appointment to visit you?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Appointments are preferred so our team can prepare a proper demo and answer your questions in detail. Call, WhatsApp, or use the form to schedule a time that works for you before heading to Olekasasi, Ongata Rongai.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-truck faq-q-icon"></i>
+                            <h3>Do you deliver outside Nairobi?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we deliver nationwide across all 47 counties. Let us know your location when you contact us and we'll include a delivery estimate along with your quote.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-headset faq-q-icon"></i>
+                            <h3>I already have a system — can I contact you for support?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Of course. Existing customers can reach our support line via call, WhatsApp, or the form for troubleshooting, spare parts, or maintenance visits — just mention your order or installation details so we can assist faster.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-building faq-q-icon"></i>
+                            <h3>I'm enquiring on behalf of a school, hotel, or company — who do I talk to?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Select "Commercial/Institutional Project" in the form's interest dropdown, or mention it when you call or message us, and we'll connect you with our commercial team for a customized proposal.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-lock faq-q-icon"></i>
+                            <h3>Is my information kept private when I contact you?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Details you share through our form, phone, or WhatsApp are used only to respond to your enquiry and are never shared or sold to third parties.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="faq-cta">
+                    <p>Still have a question we haven't answered?</p>
+                    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Ask us on WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="precta">
+        <div class="precta-bg"></div>
+        <div class="container precta-inner">
+            <h2 class="precta-title">Ready to <span class="text-accent">Start Growing</span>?</h2>
+            <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 28px; max-width: 540px;">Our team is ready to help you find the right system, plan your space, and get your first harvest on the way.</p>
+            <div class="precta-actions">
+                <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="btn btn-white"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                <a href="products.html" class="btn btn-outline-white">Explore Systems</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-pattern"></div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo footer-logo">
+                        <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                        <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+                    </div>
+                    <p>Innovative vertical farming solutions for homes, schools, institutions and commercial growers.</p>
+                    <ul class="footer-badges">
+                        <li><i class="fas fa-check"></i> Space Saving</li>
+                        <li><i class="fas fa-check"></i> Water Efficient</li>
+                        <li><i class="fas fa-check"></i> Sustainable</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/254706035470" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Products</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="products.html#product-multistorey">Multistorey Gardens</a></li>
+                        <li><a href="products.html#product-tower">Tower Gardens</a></li>
+                        <li><a href="products.html#product-growbag">Vertical Grow Bags</a></li>
+                        <li><a href="products.html">NFT Systems</a></li>
+                        <li><a href="products.html">Drip Irrigation</a></li>
+                        <li><a href="products.html" class="footer-link-more">All Products <i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Services</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="services.html#installation">Installation</a></li>
+                        <li><a href="services.html#training">Training</a></li>
+                        <li><a href="services.html#consultancy">Consultancy</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                        <li><a href="services.html#commercial">Commercial Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Company</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Olekasasi, Ongata Rongai, Nairobi</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></li>
+                        <li><i class="fas fa-clock"></i> Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM</li>
+                    </ul>
+                    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="footer-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Trust Strip -->
+            <ul class="footer-trust">
+                <li><i class="fas fa-tools"></i> Professional Installation</li>
+                <li><i class="fas fa-headset"></i> Technical Support</li>
+                <li><i class="fas fa-lock"></i> Secure Payments</li>
+                <li><i class="fas fa-truck"></i> Nationwide Delivery</li>
+                <li><i class="fas fa-seedling"></i> Sustainable Farming</li>
+            </ul>
+
+            <!-- Gallery Preview -->
+            <div class="footer-gallery">
+                <h4>Recent Installations</h4>
+                <div class="footer-gallery-grid">
+                    <a href="gallery.html"><img src="assets/Multistorey Garden/MG1.png" alt="Recent multistorey garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T1.png" alt="Recent tower garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Vertical Grow Bags/1.jpeg" alt="Recent vertical grow bag installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Nutrient Film Technique (NFT)/NFT1.png" alt="Recent NFT system installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T3.png" alt="Recent irrigation kit installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T3.jpeg" alt="Recent tower garden installation" loading="lazy"></a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <div class="footer-newsletter-copy">
+                    <h4>Grow Better. Harvest More.</h4>
+                    <p>Receive practical vertical farming tips, seasonal growing advice, and product updates.</p>
+                </div>
+                <form class="footer-newsletter-form" id="newsletterForm" novalidate>
+                    <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email address" required autocomplete="email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+            <p class="footer-newsletter-status" id="newsletterStatus"></p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vertical Tech Garden. All rights reserved.</p>
+                <div class="footer-credit">
+                    <a href="assets/All Terms/terms.html">Terms &amp; Conditions</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/warranty.html">Warranty</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/main.js?v=3"></script>
+    <script>
+    (function() {
+        // --- Live "open now" status badge (Mon-Sat, 8AM-6PM, Africa/Nairobi) ---
+        var statusEl = document.getElementById('liveStatus');
+        var statusText = document.getElementById('liveStatusText');
+        if (statusEl && statusText) {
+            try {
+                var nowStr = new Date().toLocaleString('en-US', { timeZone: 'Africa/Nairobi', hour12: false, weekday: 'short', hour: '2-digit', minute: '2-digit' });
+                var nowDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Nairobi' }));
+                var day = nowDate.getDay(); // 0 = Sun
+                var hour = nowDate.getHours();
+                var isOpen = day !== 0 && hour >= 8 && hour < 18;
+                statusEl.classList.add(isOpen ? 'is-open' : 'is-closed');
+                statusText.textContent = isOpen ? "We're online now — message us anytime" : "Currently closed — leave a message, we'll reply first thing";
+            } catch (e) {
+                statusEl.classList.add('is-open');
+                statusText.textContent = "Reach out anytime — we'll get back to you";
+            }
+        }
+
+        // --- Reveal animation for contact cards, form & map ---
+        var revealTargets = document.querySelectorAll('.contact-card, .contact-social, .contact-form-box, .contact-map');
+        if (revealTargets.length) {
+            var io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealTargets.forEach(function(el) { io.observe(el); });
+        }
+    })();
+    </script>
+    <script>
+    (function() {
+        var hash = window.location.hash;
+        if (!hash) return;
+        var target = document.getElementById(hash.substring(1));
+        if (!target) return;
+        function scrollToTarget() {
+            var topbar = document.getElementById('topbar');
+            var navbar = document.getElementById('navbar');
+            var topbarH = topbar ? topbar.offsetHeight : 44;
+            var navbarH = navbar ? navbar.offsetHeight : 72;
+            var offset = topbarH + navbarH + 20;
+            var top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+        if (document.readyState === 'complete') {
+            setTimeout(scrollToTarget, 100);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(scrollToTarget, 100);
+            });
+        }
+    })();
+    </script>
+    <script>
+    (function() {
+        var saved = localStorage.getItem('vtg_cart_message');
+        if (saved) {
+            var msgField = document.getElementById('message');
+            if (msgField) {
+                msgField.value = saved;
+            }
+            localStorage.removeItem('vtg_cart_message');
+        }
+    })();
+    </script>
+</body>
+</html>

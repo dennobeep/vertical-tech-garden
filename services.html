@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vertical Tech Garden services — professional installation, training, maintenance, and consultancy for vertical farming systems across Kenya.">
+    <title>Services | Vertical Tech Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('assets/Multistorey Garden/MG1.png');
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.85) 0%, rgba(46,79,46,0.6) 50%, rgba(27,58,27,0.7) 100%);
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .page-hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--green-200);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .page-hero-title .text-accent { color: var(--green-300); }
+        .page-hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ---- Page wrapper, matches .page-products on products.html ---- */
+        .page-services {
+            position: relative;
+            padding: 90px 0;
+            background: var(--cream);
+            overflow: hidden;
+        }
+        .page-services::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 40%, rgba(46,125,50,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-services::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            right: -20%;
+            width: 140%;
+            height: 100%;
+            background: radial-gradient(ellipse at 70% 60%, rgba(46,125,50,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-services .page-deco-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .page-services .page-deco-header .deco-line {
+            width: 40px;
+            height: 2px;
+            background: var(--green-500);
+            border-radius: 2px;
+        }
+        .page-services .page-deco-header .deco-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green-50);
+            border-radius: 50%;
+            color: var(--green-600);
+            font-size: 1.1rem;
+            border: 2px solid var(--green-200);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 48px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--green-900);
+            margin-bottom: 12px;
+        }
+        .page-header p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ---- Service cards, magazine-style to match products' mag-rows ---- */
+        .svc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px 40px;
+            counter-reset: svccard;
+        }
+        .svc-card {
+            counter-increment: svccard;
+            position: relative;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            overflow: hidden;
+            box-shadow: 0 26px 60px rgba(27,58,27,0.16);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .svc-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 32px 70px rgba(27,58,27,0.22);
+        }
+        .svc-card::before {
+            content: counter(svccard, decimal-leading-zero);
+            position: absolute;
+            top: -18px;
+            right: -4px;
+            font-family: var(--font-display);
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--green-50);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .svc-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        .svc-card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--green-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--green-700);
+            border: 2px solid var(--green-200);
+            margin-bottom: 18px;
+        }
+        .svc-card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--green-700);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .svc-card-tag::before {
+            content: '';
+            width: 26px;
+            height: 2px;
+            background: var(--green-500);
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .svc-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--green-900);
+            margin-bottom: 12px;
+        }
+        .svc-card-desc {
+            font-size: 0.92rem;
+            color: var(--gray-600);
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+        .svc-card-desc::first-letter {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--green-600);
+            float: left;
+            line-height: 0.75;
+            margin: 3px 6px 0 0;
+        }
+        .svc-card-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 22px;
+            list-style: none;
+            padding: 0;
+        }
+        .svc-card-features li {
+            font-size: 0.85rem;
+            color: var(--green-700);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .svc-card-features li i {
+            color: var(--green-500);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .svc-card-actions {
+            padding-top: 18px;
+            border-top: 1px solid var(--green-100);
+        }
+
+        .services-cta {
+            position: relative;
+            text-align: center;
+            margin: 0;
+            padding: 80px 40px;
+            overflow: hidden;
+            background-image: url('assets/Multistorey Garden/MG1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .services-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.88) 0%, rgba(46,79,46,0.7) 50%, rgba(27,58,27,0.82) 100%);
+            z-index: 1;
+        }
+        .services-cta-soil {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(180deg, #5C3A1E, #7A4E2D);
+            z-index: 2;
+        }
+        .services-cta .container {
+            position: relative;
+            z-index: 2;
+        }
+        .services-cta h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .services-cta h2 .text-accent {
+            color: var(--green-300);
+        }
+        .services-cta p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            margin-bottom: 28px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .services-cta .btn-primary {
+            background: var(--green-500);
+            border-color: var(--green-500);
+        }
+        .services-cta .btn-primary:hover {
+            background: var(--green-600);
+            border-color: var(--green-600);
+        }
+
+        @media (max-width: 900px) {
+            .svc-grid { grid-template-columns: 1fr; gap: 24px; }
+            .svc-card::before { font-size: 3.5rem; top: -10px; }
+            .page-hero-title { font-size: 2.2rem; }
+            .page-hero { height: 40vh; min-height: 300px; }
+            .page-header { padding: 36px 16px 28px; }
+            .page-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar" id="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></span>
+                <span><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></span>
+            </div>
+            <div class="topbar-right">
+                <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-has-mega">
+                    <a href="javascript:void(0)">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="nav-mega">
+                        <div class="nav-mega-inner">
+                            <!-- Left sidebar -->
+                            <div class="nav-mega-sidebar">
+                                <div>
+                                    <span class="nav-mega-sidebar-label">Our Range</span>
+                                    <p class="nav-mega-sidebar-title">Grow More<br>With Less</p>
+                                    <p class="nav-mega-sidebar-desc">Five proven systems — from compact home setups to full commercial installations.</p>
+                                    <a href="products.html" class="nav-mega-sidebar-cta">Browse all products <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="nav-mega-stats">
+                                    <span class="nav-mega-stat"><i class="fas fa-seedling"></i> 10× more yield per m²</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-tint"></i> Up to 80% less water</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-map-marker-alt"></i> Nairobi-based &amp; local support</span>
+                                </div>
+                            </div>
+                            <!-- Right content panel -->
+                            <div class="nav-mega-content">
+                                <div class="nav-mega-content-header">
+                                    <span class="nav-mega-content-label">Products</span>
+                                    <span class="nav-mega-content-count">5 Systems</span>
+                                </div>
+                                <div class="nav-mega-grid">
+                                    <a href="products.html#product-multistorey" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-layer-group"></i></span>
+                                        <span class="nav-mega-title">Multistorey Gardens</span>
+                                        <span class="nav-mega-desc">Multi-level systems for maximum yield in compact plots</span>
+                                    </a>
+                                    <a href="products.html#product-tower" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-arrow-up"></i></span>
+                                        <span class="nav-mega-title">Tower Gardens</span>
+                                        <span class="nav-mega-desc">Space-saving vertical towers for balconies &amp; rooftops</span>
+                                    </a>
+                                    <a href="products.html#product-growbag" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-shopping-bag"></i></span>
+                                        <span class="nav-mega-title">Vertical Grow Bags</span>
+                                        <span class="nav-mega-desc">Flexible growing bags for walls, fences &amp; corridors</span>
+                                    </a>
+                                    <a href="products.html#product-irrigation" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-tint"></i></span>
+                                        <span class="nav-mega-title">Irrigation Kits</span>
+                                        <span class="nav-mega-desc">Automated drip systems for worry-free watering</span>
+                                    </a>
+                                    <a href="products.html#product-nft" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-water"></i></span>
+                                        <span class="nav-mega-title">NFT Systems</span>
+                                        <span class="nav-mega-desc">Nutrient Film Technique for soil-free commercial growing</span>
+                                    </a>
+                                </div>
+                                <div class="nav-mega-footer">
+                                    <span class="nav-mega-footer-note"><i class="fas fa-truck"></i> Delivered &amp; installed across Kenya</span>
+                                    <a href="index.html#calculator" class="nav-mega-footer-link">Calculate ROI <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Start Growing</a></li>
+                <li><a href="#" class="nav-cart" id="cartBtn"><i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cartCount">0</span></a></li>
+            </ul>
+            <!-- Cart Overlay -->
+            <div class="cart-overlay" id="cartOverlay"></div>
+            <!-- Cart Drawer -->
+            <div class="cart-drawer" id="cartDrawer">
+                <div class="cart-drawer-header">
+                    <h3>Shopping Cart</h3>
+                    <span id="cartItemCount">0 items</span>
+                    <button class="cart-drawer-close" id="cartClose"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="cart-drawer-body" id="cartBody">
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <strong id="cartTotal">KSh 0</strong>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-outline" id="cartClear">Clear</button>
+                        <button class="btn btn-primary" id="cartCheckout">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-tag">What We Offer</span>
+            <h1 class="page-hero-title">Our <span class="text-accent">Services</span></h1>
+            <p class="page-hero-subtitle">End-to-end vertical farming solutions — from system installation to ongoing support and training.</p>
+        </div>
+    </section>
+
+    <section class="section page-services">
+        <div class="container">
+
+            <div class="page-header">
+                <div class="page-deco-header">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon"><i class="fas fa-seedling"></i></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h1>Everything You Need to <span class="text-accent">Succeed</span></h1>
+                <p>We don't just sell systems — we partner with you at every stage of your growing journey.</p>
+            </div>
+
+            <div class="svc-grid">
+
+                <div class="svc-card" id="installation">
+                    <div class="svc-card-icon"><i class="fas fa-tools"></i></div>
+                    <span class="svc-card-tag">On-Site</span>
+                    <h3>System Installation</h3>
+                    <p class="svc-card-desc">Professional on-site installation by our experienced team. We handle everything — assembly, plumbing, setup, and testing.</p>
+                    <ul class="svc-card-features">
+                        <li><i class="fas fa-check-circle"></i> Same-day installation for standard systems</li>
+                        <li><i class="fas fa-check-circle"></i> Custom setups for schools, hotels &amp; institutions</li>
+                        <li><i class="fas fa-check-circle"></i> Full system testing before handover</li>
+                        <li><i class="fas fa-check-circle"></i> Clean, organized workmanship guaranteed</li>
+                    </ul>
+                    <div class="svc-card-actions">
+                        <a href="contact.html" class="btn btn-primary">Book Installation <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="svc-card" id="training">
+                    <div class="svc-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="svc-card-tag">Hands-On</span>
+                    <h3>Farmer Training</h3>
+                    <p class="svc-card-desc">Hands-on training sessions covering everything from planting to harvest. Learn best practices for maximum yield.</p>
+                    <ul class="svc-card-features">
+                        <li><i class="fas fa-check-circle"></i> On-site training for groups &amp; institutions</li>
+                        <li><i class="fas fa-check-circle"></i> Seedling selection &amp; nursery management</li>
+                        <li><i class="fas fa-check-circle"></i> Nutrient management &amp; pest control</li>
+                        <li><i class="fas fa-check-circle"></i> Harvest planning &amp; crop rotation</li>
+                    </ul>
+                    <div class="svc-card-actions">
+                        <a href="contact.html" class="btn btn-primary">Book Training <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="svc-card" id="maintenance">
+                    <div class="svc-card-icon"><i class="fas fa-wrench"></i></div>
+                    <span class="svc-card-tag">Scheduled</span>
+                    <h3>Maintenance &amp; Support</h3>
+                    <p class="svc-card-desc">Ongoing support to keep your system running at peak performance. Regular check-ups and prompt repairs.</p>
+                    <ul class="svc-card-features">
+                        <li><i class="fas fa-check-circle"></i> Bi-monthly system check-ups</li>
+                        <li><i class="fas fa-check-circle"></i> Pump &amp; plumbing maintenance</li>
+                        <li><i class="fas fa-check-circle"></i> Replacement parts available</li>
+                        <li><i class="fas fa-check-circle"></i> Phone &amp; WhatsApp support</li>
+                    </ul>
+                    <div class="svc-card-actions">
+                        <a href="contact.html" class="btn btn-primary">Get Support <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="svc-card" id="consultancy">
+                    <div class="svc-card-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <span class="svc-card-tag">Strategic</span>
+                    <h3>Consultancy</h3>
+                    <p class="svc-card-desc">Expert advice for commercial projects, school feeding programs, and institutional food security initiatives.</p>
+                    <ul class="svc-card-features">
+                        <li><i class="fas fa-check-circle"></i> Feasibility studies &amp; site assessment</li>
+                        <li><i class="fas fa-check-circle"></i> Custom system design &amp; layout</li>
+                        <li><i class="fas fa-check-circle"></i> Budget planning &amp; ROI projections</li>
+                        <li><i class="fas fa-check-circle"></i> Grant &amp; proposal support for NGOs</li>
+                    </ul>
+                    <div class="svc-card-actions">
+                        <a href="contact.html" class="btn btn-primary">Talk to an Expert <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="section faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <div class="faq-deco">
+                        <span class="faq-deco-line"></span>
+                        <span class="faq-deco-icon"><i class="fas fa-leaf"></i></span>
+                        <span class="faq-deco-line"></span>
+                    </div>
+                    <span class="section-tag">FAQ</span>
+                    <h2 class="section-title">Frequently Asked <span class="text-accent">Questions</span></h2>
+                    <p class="section-desc">Everything you need to know about our installation, training, maintenance, and consultancy services.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What does installation include?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our on-site installation covers full assembly, plumbing, setup, and system testing before handover. Standard systems are typically installed the same day, while custom setups for schools, hotels, and institutions are scheduled according to project scope. Every installation is finished with clean, organized workmanship.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What does farmer training cover?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our hands-on training takes you from planting to harvest, including seedling selection and nursery management, nutrient management and pest control, and harvest planning and crop rotation. Sessions can be arranged on-site for individuals, groups, schools, and institutions.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>How does maintenance and support work?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer bi-monthly system check-ups to keep your setup running at peak performance, along with pump and plumbing maintenance and access to replacement parts. If anything comes up between visits, our team is reachable by phone and WhatsApp for prompt support.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What's included in consultancy?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our consultancy service provides feasibility studies and site assessments, custom system design and layout, and budget planning with ROI projections. We also support NGOs and institutions with grant and proposal documentation for school feeding and food security initiatives.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>Do you offer delivery?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, delivery and installation services are available upon request. We serve clients across Kenya and can arrange delivery to your location. Contact us for a delivery quote tailored to your area.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What about commercial projects?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We specialize in both small-scale and large-scale projects. For commercial growers, schools, hotels, hospitals, and institutions, we provide customized solutions including project design, bulk supply, professional installation, training, and ongoing maintenance support.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>How much do your services cost?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Service pricing depends on the scope of work — system size, location, and whether it's a standard or custom project. Contact us for a personalized quote covering installation, training, maintenance, or consultancy, and we'll help you find the best solution for your budget.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>Can I book training or consultancy without buying a system?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. Training, maintenance, and consultancy services can be booked independently — they aren't limited to customers who purchased a system from us. Many schools and institutions also bring us in for feasibility studies and consultancy before deciding on a system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="services-cta">
+            <div class="services-cta-soil"></div>
+            <div class="container">
+                <h2>Ready to Get <span class="text-accent">Started</span>?</h2>
+                <p>Book a free consultation and let us design the perfect vertical farming solution for your space and needs.</p>
+                <a href="contact.html" class="btn btn-primary">Book a Consultation <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-pattern"></div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo footer-logo">
+                        <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                        <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+                    </div>
+                    <p>Innovative vertical farming solutions for homes, schools, institutions and commercial growers.</p>
+                    <ul class="footer-badges">
+                        <li><i class="fas fa-check"></i> Space Saving</li>
+                        <li><i class="fas fa-check"></i> Water Efficient</li>
+                        <li><i class="fas fa-check"></i> Sustainable</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/254706035470" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Products</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="products.html#product-multistorey">Multistorey Gardens</a></li>
+                        <li><a href="products.html#product-tower">Tower Gardens</a></li>
+                        <li><a href="products.html#product-growbag">Vertical Grow Bags</a></li>
+                        <li><a href="products.html">NFT Systems</a></li>
+                        <li><a href="products.html">Drip Irrigation</a></li>
+                        <li><a href="products.html" class="footer-link-more">All Products <i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Services</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="services.html#installation">Installation</a></li>
+                        <li><a href="services.html#training">Training</a></li>
+                        <li><a href="services.html#consultancy">Consultancy</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                        <li><a href="services.html#commercial">Commercial Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Company</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Olekasasi, Ongata Rongai, Nairobi</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></li>
+                        <li><i class="fas fa-clock"></i> Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM</li>
+                    </ul>
+                    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="footer-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Trust Strip -->
+            <ul class="footer-trust">
+                <li><i class="fas fa-tools"></i> Professional Installation</li>
+                <li><i class="fas fa-headset"></i> Technical Support</li>
+                <li><i class="fas fa-lock"></i> Secure Payments</li>
+                <li><i class="fas fa-truck"></i> Nationwide Delivery</li>
+                <li><i class="fas fa-seedling"></i> Sustainable Farming</li>
+            </ul>
+
+            <!-- Gallery Preview -->
+            <div class="footer-gallery">
+                <h4>Recent Installations</h4>
+                <div class="footer-gallery-grid">
+                    <a href="gallery.html"><img src="assets/Multistorey Garden/MG1.png" alt="Recent multistorey garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T1.png" alt="Recent tower garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Vertical Grow Bags/1.jpeg" alt="Recent vertical grow bag installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Nutrient Film Technique (NFT)/NFT1.png" alt="Recent NFT system installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T3.png" alt="Recent irrigation kit installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T3.jpeg" alt="Recent tower garden installation" loading="lazy"></a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <div class="footer-newsletter-copy">
+                    <h4>Grow Better. Harvest More.</h4>
+                    <p>Receive practical vertical farming tips, seasonal growing advice, and product updates.</p>
+                </div>
+                <form class="footer-newsletter-form" id="newsletterForm" novalidate>
+                    <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email address" required autocomplete="email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+            <p class="footer-newsletter-status" id="newsletterStatus"></p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vertical Tech Garden. All rights reserved.</p>
+                <div class="footer-credit">
+                    <a href="assets/All Terms/terms.html">Terms &amp; Conditions</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/warranty.html">Warranty</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/main.js?v=3"></script>
+</body>
+</html>

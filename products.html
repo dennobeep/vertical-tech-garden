@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Vertical Tech Garden's complete range of vertical farming systems — Multistorey Garden, Tower Garden, Vertical Grow Bags, NFT Systems, and Irrigation Kits.">
+    <title>Products | Vertical Tech Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('assets/Multistorey Garden/MG1.png');
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.85) 0%, rgba(46,79,46,0.6) 50%, rgba(27,58,27,0.7) 100%);
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .page-hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--green-200);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .page-hero-title .text-accent { color: var(--green-300); }
+        .page-hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .page-products {
+            position: relative;
+            padding: 90px 0;
+            background: var(--cream);
+            overflow: hidden;
+        }
+        .page-products::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 40%, rgba(46,125,50,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-products::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            right: -20%;
+            width: 140%;
+            height: 100%;
+            background: radial-gradient(ellipse at 70% 60%, rgba(46,125,50,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-products .page-deco-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .page-products .page-deco-header .deco-line {
+            width: 40px;
+            height: 2px;
+            background: var(--green-500);
+            border-radius: 2px;
+        }
+        .page-products .page-deco-header .deco-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green-50);
+            border-radius: 50%;
+            color: var(--green-600);
+            font-size: 1.1rem;
+            border: 2px solid var(--green-200);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 48px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--green-900);
+            margin-bottom: 12px;
+        }
+        .page-header p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .page-products .mag-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 72px;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px 40px;
+            counter-reset: magrow;
+        }
+
+        .mag-row {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 60px;
+            counter-increment: magrow;
+        }
+        .mag-row--alt {
+            flex-direction: row-reverse;
+        }
+
+        .mag-row-visual {
+            flex: 0 0 54%;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            height: 460px;
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 26px 60px rgba(27,58,27,0.16);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .mag-row:hover .mag-row-visual {
+            transform: translateY(-6px);
+            box-shadow: 0 32px 70px rgba(27,58,27,0.22);
+        }
+        .mag-row--featured .mag-row-visual {
+            flex: 0 0 58%;
+            height: 500px;
+            box-shadow: 0 0 0 3px var(--green-300), 0 26px 60px rgba(27,58,27,0.16);
+        }
+        .mag-row-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .mag-row:hover .mag-row-img {
+            transform: scale(1.05);
+        }
+        .mag-row-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--green-600);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            z-index: 2;
+        }
+        .mag-row-visual--featured .mag-row-badge {
+            background: var(--green-700);
+        }
+
+        .mag-row-body {
+            flex: 1;
+            padding: 8px 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        .mag-row-body > * {
+            position: relative;
+            z-index: 1;
+        }
+        .mag-row-body::before {
+            content: counter(magrow, decimal-leading-zero);
+            position: absolute;
+            top: -18px;
+            right: -4px;
+            font-family: var(--font-display);
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--green-100);
+            line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .mag-row--alt .mag-row-body::before {
+            right: auto;
+            left: -4px;
+        }
+        .mag-row-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: none;
+            color: var(--green-700);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+        .mag-row-tag::before {
+            content: '';
+            width: 26px;
+            height: 2px;
+            background: var(--green-500);
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .mag-row--alt .mag-row-tag {
+            flex-direction: row-reverse;
+        }
+        .mag-row-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            line-height: 1.2;
+            color: var(--green-900);
+            margin-bottom: 14px;
+        }
+        .mag-row-desc {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+        .mag-row-desc::first-letter {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--green-600);
+            float: left;
+            line-height: 0.75;
+            margin: 3px 6px 0 0;
+        }
+        .mag-row-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .rm-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--green-50);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--green-100);
+        }
+        .rm-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--green-800);
+        }
+        .rm-label {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .mag-row-features {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .mag-row-features span {
+            font-size: 0.85rem;
+            color: var(--green-700);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .mag-row-features span i {
+            color: var(--green-500);
+            font-size: 0.8rem;
+        }
+        .mag-row-details {
+            margin-bottom: 16px;
+        }
+        .mag-details-toggle {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--green-800);
+            cursor: default;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding: 4px 0 4px 14px;
+            background: none;
+            border-radius: 0;
+            border: none;
+            border-left: 3px solid var(--green-500);
+            user-select: none;
+        }
+        .mag-details-toggle i {
+            font-size: 0.8rem;
+        }
+        .mag-details-list {
+            margin: 0 0 10px 0;
+            padding: 0 12px 0 17px;
+            list-style: none;
+        }
+        .mag-details-list li {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            padding: 2px 0;
+            position: relative;
+        }
+        .mag-details-list li::before {
+            content: '\2022';
+            color: var(--green-500);
+            font-weight: 700;
+            position: absolute;
+            left: -12px;
+        }
+        .mag-row-price {
+            margin-bottom: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--green-100);
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .mag-price-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gray-500);
+            width: 100%;
+            margin-bottom: 2px;
+        }
+        .mag-price-amount {
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--green-800);
+        }
+        .mag-price-unit {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+        .mag-row-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .products-cta {
+            position: relative;
+            text-align: center;
+            margin: 0;
+            padding: 80px 40px;
+            overflow: hidden;
+            background-image: url('assets/Multistorey Garden/MG1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .products-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.88) 0%, rgba(46,79,46,0.7) 50%, rgba(27,58,27,0.82) 100%);
+            z-index: 1;
+        }
+        .products-cta-soil {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(180deg, #5C3A1E, #7A4E2D);
+            z-index: 2;
+        }
+        .products-cta .container {
+            position: relative;
+            z-index: 2;
+        }
+        .products-cta h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .products-cta h2 .text-accent {
+            color: var(--green-300);
+        }
+        .products-cta p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            margin-bottom: 28px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .products-cta .btn-primary {
+            background: var(--green-500);
+            border-color: var(--green-500);
+        }
+        .products-cta .btn-primary:hover {
+            background: var(--green-600);
+            border-color: var(--green-600);
+        }
+
+        @media (max-width: 900px) {
+            .mag-row,
+            .mag-row--alt {
+                flex-direction: column;
+                gap: 28px;
+            }
+            .mag-row-visual,
+            .mag-row--featured .mag-row-visual {
+                flex: none;
+                width: 100%;
+                min-height: 260px;
+            }
+            .mag-row-body {
+                padding: 4px 4px 0;
+            }
+            .mag-row-body::before {
+                font-size: 3.5rem;
+                top: -10px;
+            }
+            .page-hero-title { font-size: 2.2rem; }
+            .page-hero { height: 40vh; min-height: 300px; }
+            .page-header { padding: 36px 16px 28px; }
+            .page-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar" id="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></span>
+                <span><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></span>
+            </div>
+            <div class="topbar-right">
+                <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-has-mega">
+                    <a href="javascript:void(0)">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="nav-mega">
+                        <div class="nav-mega-inner">
+                            <!-- Left sidebar -->
+                            <div class="nav-mega-sidebar">
+                                <div>
+                                    <span class="nav-mega-sidebar-label">Our Range</span>
+                                    <p class="nav-mega-sidebar-title">Grow More<br>With Less</p>
+                                    <p class="nav-mega-sidebar-desc">Five proven systems — from compact home setups to full commercial installations.</p>
+                                    <a href="products.html" class="nav-mega-sidebar-cta">Browse all products <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="nav-mega-stats">
+                                    <span class="nav-mega-stat"><i class="fas fa-seedling"></i> 10× more yield per m²</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-tint"></i> Up to 80% less water</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-map-marker-alt"></i> Nairobi-based &amp; local support</span>
+                                </div>
+                            </div>
+                            <!-- Right content panel -->
+                            <div class="nav-mega-content">
+                                <div class="nav-mega-content-header">
+                                    <span class="nav-mega-content-label">Products</span>
+                                    <span class="nav-mega-content-count">5 Systems</span>
+                                </div>
+                                <div class="nav-mega-grid">
+                                    <a href="products.html#product-multistorey" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-layer-group"></i></span>
+                                        <span class="nav-mega-title">Multistorey Gardens</span>
+                                        <span class="nav-mega-desc">Multi-level systems for maximum yield in compact plots</span>
+                                    </a>
+                                    <a href="products.html#product-tower" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-arrow-up"></i></span>
+                                        <span class="nav-mega-title">Tower Gardens</span>
+                                        <span class="nav-mega-desc">Space-saving vertical towers for balconies &amp; rooftops</span>
+                                    </a>
+                                    <a href="products.html#product-growbag" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-shopping-bag"></i></span>
+                                        <span class="nav-mega-title">Vertical Grow Bags</span>
+                                        <span class="nav-mega-desc">Flexible growing bags for walls, fences &amp; corridors</span>
+                                    </a>
+                                    <a href="products.html#product-irrigation" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-tint"></i></span>
+                                        <span class="nav-mega-title">Irrigation Kits</span>
+                                        <span class="nav-mega-desc">Automated drip systems for worry-free watering</span>
+                                    </a>
+                                    <a href="products.html#product-nft" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-water"></i></span>
+                                        <span class="nav-mega-title">NFT Systems</span>
+                                        <span class="nav-mega-desc">Nutrient Film Technique for soil-free commercial growing</span>
+                                    </a>
+                                </div>
+                                <div class="nav-mega-footer">
+                                    <span class="nav-mega-footer-note"><i class="fas fa-truck"></i> Delivered &amp; installed across Kenya</span>
+                                    <a href="index.html#calculator" class="nav-mega-footer-link">Calculate ROI <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Start Growing</a></li>
+                <li><a href="#" class="nav-cart" id="cartBtn"><i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cartCount">0</span></a></li>
+            </ul>
+            <!-- Cart Overlay -->
+            <div class="cart-overlay" id="cartOverlay"></div>
+            <!-- Cart Drawer -->
+            <div class="cart-drawer" id="cartDrawer">
+                <div class="cart-drawer-header">
+                    <h3>Shopping Cart</h3>
+                    <span id="cartItemCount">0 items</span>
+                    <button class="cart-drawer-close" id="cartClose"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="cart-drawer-body" id="cartBody">
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <strong id="cartTotal">KSh 0</strong>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-outline" id="cartClear">Clear</button>
+                        <button class="btn btn-primary" id="cartCheckout">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-tag">Our Range</span>
+            <h1 class="page-hero-title">Our <span class="text-accent">Products</span></h1>
+            <p class="page-hero-subtitle">Choose from our range of proven vertical farming solutions designed for every scale and budget.</p>
+        </div>
+    </section>
+
+    <section class="section page-products">
+        <div class="container">
+
+            <div class="page-header">
+                <div class="page-deco-header">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon"><i class="fas fa-seedling"></i></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h1>Our <span class="text-accent">Products</span></h1>
+                <p>Choose from our range of proven vertical farming solutions designed for every scale and budget.</p>
+            </div>
+
+            <div class="mag-rows">
+
+                <div class="mag-row mag-row--featured">
+                    <div class="mag-row-visual mag-row-visual--featured">
+                        <div class="mag-row-badge">Best Seller</div>
+                        <img class="mag-row-img" src="assets/Multistorey Garden/MG Homepage.png" alt="Multistorey Garden">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">Most Popular</span>
+                        <h3 id="product-multistorey" style="scroll-margin-top: 140px;">Multistorey Garden</h3>
+                        <p class="mag-row-desc">Transform even the smallest space into a productive kitchen garden with our 6-layer Multistorey Garden. Designed for urban homes, balconies, rooftops, and compounds, it grows up to 80 healthy vegetables in just 1.2 square metres.</p>
+                        <div class="mag-row-meta">
+                            <div class="rm-item">
+                                <span class="rm-value">80</span>
+                                <span class="rm-label">Plants</span>
+                            </div>
+                            <div class="rm-item">
+                                <span class="rm-value">6</span>
+                                <span class="rm-label">Levels</span>
+                            </div>
+                            <div class="rm-item">
+                                <span class="rm-value">1.2m</span>
+                                <span class="rm-label">Base Dia.</span>
+                            </div>
+                            <div class="rm-item">
+                                <span class="rm-value">1.2m²</span>
+                                <span class="rm-label">Space</span>
+                            </div>
+                        </div>
+                        <div class="mag-row-details">
+                            <div class="mag-details-toggle"><i class="fas fa-leaf"></i> Key Advantages</div>
+                            <ul class="mag-details-list">
+                                <li>Maximizes limited space for high vegetable production</li>
+                                <li>Produces fresh, healthy vegetables at home</li>
+                                <li>Saves water compared to conventional gardening</li>
+                                <li>Reduces food costs</li>
+                                <li>Ideal for kale, spinach, lettuce, herbs, strawberries, and more</li>
+                                <li>Suitable for homes, schools, institutions, and urban farming projects</li>
+                                <li>Promotes climate-smart and sustainable agriculture</li>
+                            </ul>
+                            <div class="mag-details-toggle"><i class="fas fa-box"></i> Package Includes</div>
+                            <ul class="mag-details-list">
+                                <li>Durable, reusable, and easy to install</li>
+                            </ul>
+                        </div>
+                        <div class="mag-row-price">
+                            <span class="mag-price-label">Starting at</span>
+                            <span class="mag-price-amount">KSh 1,500</span>
+                            <span class="mag-price-unit">per unit</span>
+                        </div>
+                        <div class="mag-row-actions">
+                            <a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-outline add-to-cart" data-product="Multistorey Garden" data-price="1500"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mag-row mag-row--alt">
+                    <div class="mag-row-visual mag-row-visual--alt">
+                        <img class="mag-row-img" src="assets/Tower Garden/Tower Homepage.png" alt="Tower Garden">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">Premium</span>
+                        <h3 id="product-tower" style="scroll-margin-top: 140px;">Tower Garden</h3>
+                        <p class="mag-row-desc">Transform just 1 square foot of space into a productive kitchen garden. Designed for urban homes, balconies, rooftops, and small compounds, it enables you to grow fresh, healthy vegetables all year round.</p>
+                        <div class="mag-row-features">
+                            <span><i class="fas fa-check-circle"></i> Supports up to 52 plants per tower</span>
+                            <span><i class="fas fa-check-circle"></i> Uses up to 90% less water</span>
+                            <span><i class="fas fa-check-circle"></i> Complete package, ready to plant</span>
+                        </div>
+                        <div class="mag-row-details">
+                            <div class="mag-details-toggle"><i class="fas fa-box"></i> Package Includes</div>
+                            <ul class="mag-details-list">
+                                <li>Tower Garden unit</li>
+                                <li>Premium planting medium</li>
+                                <li>Hydroponic Nutrient Solution A & B (1L each)</li>
+                                <li>52 healthy vegetable seedlings</li>
+                                <li>Bottle dripper irrigation system</li>
+                            </ul>
+                            <div class="mag-details-toggle"><i class="fas fa-leaf"></i> Key Advantages</div>
+                            <ul class="mag-details-list">
+                                <li>Maximizes just 1 square foot of space</li>
+                                <li>Saves up to 90% of water compared to conventional farming</li>
+                                <li>Produces clean, healthy, and chemical-free vegetables</li>
+                                <li>Easy to install, maintain, and harvest</li>
+                                <li>Perfect for year-round home food production</li>
+                            </ul>
+                        </div>
+                        <div class="mag-row-price">
+                            <span class="mag-price-label">Starting at</span>
+                            <span class="mag-price-amount">KSh 4,500</span>
+                            <span class="mag-price-unit">per unit</span>
+                        </div>
+                        <div class="mag-row-actions">
+                            <a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-outline add-to-cart" data-product="Tower Garden" data-price="4500"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mag-row">
+                    <div class="mag-row-visual">
+                        <img class="mag-row-img" src="assets/Vertical Grow Bags/Grow Bags Homepage.jpeg" alt="Vertical Grow Bags">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">Starter</span>
+                        <h3 id="product-growbag" style="scroll-margin-top: 140px;">Vertical Grow Bags</h3>
+                        <p class="mag-row-desc">Grow more food in less space with our durable Vertical Grow Bag. Designed for urban farming, balconies, rooftops, compounds, and kitchen gardens — making it easy to produce fresh vegetables at home.</p>
+                        <div class="mag-row-features">
+                            <span><i class="fas fa-check-circle"></i> Holds up to 80 plants</span>
+                            <span><i class="fas fa-check-circle"></i> Requires only 1 sq meter</span>
+                            <span><i class="fas fa-check-circle"></i> Affordable entry into vertical farming</span>
+                        </div>
+                        <div class="mag-row-details">
+                            <div class="mag-details-toggle"><i class="fas fa-leaf"></i> Key Advantages</div>
+                            <ul class="mag-details-list">
+                                <li>Maximizes small spaces for high vegetable production</li>
+                                <li>Ideal for spinach, kale, lettuce, herbs, strawberries, and more</li>
+                                <li>Improves water efficiency compared to traditional farming</li>
+                                <li>Promotes healthy root growth and better drainage</li>
+                                <li>Suitable for rooftops, balconies, patios, and small compounds</li>
+                                <li>Easy to install, maintain, and harvest</li>
+                                <li>Affordable solution for home food production and income generation</li>
+                            </ul>
+                        </div>
+                        <div class="mag-row-price">
+                            <span class="mag-price-label">Starting at</span>
+                            <span class="mag-price-amount">KSh 650</span>
+                            <span class="mag-price-unit">per unit</span>
+                        </div>
+                        <div class="mag-row-actions">
+                            <a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-outline add-to-cart" data-product="Vertical Grow Bags" data-price="650"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mag-row mag-row--alt">
+                    <div class="mag-row-visual mag-row-visual--alt">
+                        <img class="mag-row-img" src="assets/Nutrient Film Technique (NFT)/ProductsPage.png" alt="NFT System">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">Advanced</span>
+                        <h3 id="product-nft" style="scroll-margin-top: 140px;">Nutrient Film Technique (NFT)</h3>
+                        <p class="mag-row-desc">Grow fresh, healthy vegetables efficiently with our complete Nutrient Film Technique (NFT) Hydroponic System. Designed for homes, schools, institutions, and commercial growers, this soil-free system delivers fast plant growth while using minimal water and space.</p>
+                        <div class="mag-row-features">
+                            <span><i class="fas fa-check-circle"></i> Holds up to 40 plants</span>
+                            <span><i class="fas fa-check-circle"></i> Uses up to 90% less water</span>
+                            <span><i class="fas fa-check-circle"></i> Automated timer-controlled irrigation</span>
+                        </div>
+                        <div class="mag-row-details">
+                            <div class="mag-details-toggle"><i class="fas fa-box"></i> Package Includes</div>
+                            <ul class="mag-details-list">
+                                <li>Complete NFT Hydroponic System</li>
+                                <li>Submersible water pump</li>
+                                <li>20-litre reservoir tank</li>
+                                <li>Timer switch & electrical wire</li>
+                                <li>Hydroponic Nutrient Solution (A & B)</li>
+                                <li>40 healthy seedlings</li>
+                            </ul>
+                            <div class="mag-details-toggle"><i class="fas fa-leaf"></i> Key Advantages</div>
+                            <ul class="mag-details-list">
+                                <li>Soil-free growing for clean, healthy vegetables</li>
+                                <li>Uses up to 90% less water than conventional farming</li>
+                                <li>Faster plant growth through continuous nutrient circulation</li>
+                                <li>Produces higher yields in a small space</li>
+                                <li>Reduces weeds and most soil-borne diseases</li>
+                                <li>Ideal for lettuce, spinach, kale, herbs, and other greens</li>
+                            </ul>
+                        </div>
+                        <div class="mag-row-price">
+                            <span class="mag-price-label">Starting at</span>
+                            <span class="mag-price-amount">KSh 15,000</span>
+                            <span class="mag-price-unit">per unit</span>
+                        </div>
+                        <div class="mag-row-actions">
+                            <a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-outline add-to-cart" data-product="Nutrient Film Technique (NFT)" data-price="15000"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mag-row">
+                    <div class="mag-row-visual">
+                        <img class="mag-row-img" src="assets/Drip Irrigation Kit (For Multistorey Garden)/Irrigation Homepage.png" alt="Irrigation Kits">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">Essential</span>
+                        <h3 id="product-irrigation" style="scroll-margin-top: 140px;">Irrigation Kits</h3>
+                        <p class="mag-row-desc">Keep your multistorey garden healthy and productive with our efficient Drip Irrigation Kit. Designed to deliver water directly to each plant, this system ensures consistent watering while minimizing waste and reducing maintenance.</p>
+                        <div class="mag-row-features">
+                            <span><i class="fas fa-check-circle"></i> Saves up to 70% water</span>
+                            <span><i class="fas fa-check-circle"></i> Automates irrigation</span>
+                            <span><i class="fas fa-check-circle"></i> Easy to install & maintain</span>
+                        </div>
+                        <div class="mag-row-details">
+                            <div class="mag-details-toggle"><i class="fas fa-leaf"></i> Key Advantages</div>
+                            <ul class="mag-details-list">
+                                <li>Delivers water directly to plant roots for maximum efficiency</li>
+                                <li>Saves up to 70% of water compared to manual watering</li>
+                                <li>Ensures uniform watering for healthy, vigorous growth</li>
+                                <li>Reduces water wastage through evaporation and runoff</li>
+                                <li>Saves time and labor by automating irrigation</li>
+                                <li>Minimizes risk of overwatering and underwatering</li>
+                                <li>Keeps foliage dry, reducing fungal diseases</li>
+                                <li>Ideal for multistorey gardens, grow bags, towers, and more</li>
+                            </ul>
+                        </div>
+                        <div class="mag-row-price">
+                            <span class="mag-price-label">Starting at</span>
+                            <span class="mag-price-amount">KSh 2,500</span>
+                            <span class="mag-price-unit">per unit</span>
+                        </div>
+                        <div class="mag-row-actions">
+                            <a href="contact.html" class="btn btn-primary">Order Now <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn btn-outline add-to-cart" data-product="Irrigation Kits" data-price="2500"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="section faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <div class="faq-deco">
+                        <span class="faq-deco-line"></span>
+                        <span class="faq-deco-icon"><i class="fas fa-leaf"></i></span>
+                        <span class="faq-deco-line"></span>
+                    </div>
+                    <span class="section-tag">FAQ</span>
+                    <h2 class="section-title">Frequently Asked <span class="text-accent">Questions</span></h2>
+                    <p class="section-desc">Everything you need to know about vertical farming and our systems.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What is vertical farming?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Vertical farming is a method of growing crops in stacked layers or vertically inclined surfaces. It maximizes food production in limited spaces by utilizing vertical space rather than horizontal land area. Our systems are designed to make vertical farming accessible and affordable for everyone.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>How much space do I need?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our Multistorey Garden requires approximately 4 square feet of space — that's smaller than a standard doormat! It's perfect for balconies, backyards, terraces, rooftops, and even indoors near a sunny window. For larger systems, we'll help you determine the best setup for your available space.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What crops can I grow?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can grow a wide variety of crops including kale, spinach, lettuce, sukuma wiki, herbs (cilantro, parsley, basil, mint), strawberries, spring onions, peppers, tomatoes, and many other high-value vegetables. Our systems support year-round production of most leafy greens and vegetables.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>Is installation difficult?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Not at all! Our systems are designed for easy DIY installation. Every purchase comes with clear installation guides and growing instructions. We also offer professional installation services upon request to ensure your system is set up perfectly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>Do you offer delivery?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, delivery and installation services are available upon request. We serve clients across Kenya and can arrange delivery to your location. Contact us for a delivery quote tailored to your area.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>What about commercial projects?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We specialize in both small-scale and large-scale projects. For commercial growers, schools, hotels, hospitals, and institutions, we provide customized solutions including project design, bulk supply, professional installation, training, and ongoing maintenance support.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>How much does a system cost?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our systems range from KSh 1,500 for the Multistorey Garden to KSh 15,000 for the NFT System. The exact cost depends on your chosen system and the number of units required for your space. Contact us for a personalized quote and we'll help you find the best solution for your budget.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-soil"></div>
+                        <div class="faq-question">
+                            <i class="fas fa-seedling faq-q-icon"></i>
+                            <h3>Do you provide training?</h3>
+                            <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We offer comprehensive training and consultancy services for individuals, schools, community groups, and commercial operations. Our training covers system setup, crop management, pest control, and harvesting techniques to ensure your success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="products-cta">
+            <div class="products-cta-soil"></div>
+            <div class="container">
+                <h2>Need a Custom <span class="text-accent">Solution</span>?</h2>
+                <p>We design custom vertical farming setups for schools, hotels, hospitals, NGOs, and commercial growers. Get a personalized quote today.</p>
+                <a href="contact.html" class="btn btn-primary">Request a Quote <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-pattern"></div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo footer-logo">
+                        <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                        <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+                    </div>
+                    <p>Innovative vertical farming solutions for homes, schools, institutions and commercial growers.</p>
+                    <ul class="footer-badges">
+                        <li><i class="fas fa-check"></i> Space Saving</li>
+                        <li><i class="fas fa-check"></i> Water Efficient</li>
+                        <li><i class="fas fa-check"></i> Sustainable</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/254706035470" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Products</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="products.html#product-multistorey">Multistorey Gardens</a></li>
+                        <li><a href="products.html#product-tower">Tower Gardens</a></li>
+                        <li><a href="products.html#product-growbag">Vertical Grow Bags</a></li>
+                        <li><a href="products.html">NFT Systems</a></li>
+                        <li><a href="products.html">Drip Irrigation</a></li>
+                        <li><a href="products.html" class="footer-link-more">All Products <i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Services</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="services.html#installation">Installation</a></li>
+                        <li><a href="services.html#training">Training</a></li>
+                        <li><a href="services.html#consultancy">Consultancy</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                        <li><a href="services.html#commercial">Commercial Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Company</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Olekasasi, Ongata Rongai, Nairobi</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></li>
+                        <li><i class="fas fa-clock"></i> Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM</li>
+                    </ul>
+                    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="footer-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Trust Strip -->
+            <ul class="footer-trust">
+                <li><i class="fas fa-tools"></i> Professional Installation</li>
+                <li><i class="fas fa-headset"></i> Technical Support</li>
+                <li><i class="fas fa-lock"></i> Secure Payments</li>
+                <li><i class="fas fa-truck"></i> Nationwide Delivery</li>
+                <li><i class="fas fa-seedling"></i> Sustainable Farming</li>
+            </ul>
+
+            <!-- Gallery Preview -->
+            <div class="footer-gallery">
+                <h4>Recent Installations</h4>
+                <div class="footer-gallery-grid">
+                    <a href="gallery.html"><img src="assets/Multistorey Garden/MG1.png" alt="Recent multistorey garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T1.png" alt="Recent tower garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Vertical Grow Bags/1.jpeg" alt="Recent vertical grow bag installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Nutrient Film Technique (NFT)/NFT1.png" alt="Recent NFT system installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T3.png" alt="Recent irrigation kit installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T3.jpeg" alt="Recent tower garden installation" loading="lazy"></a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <div class="footer-newsletter-copy">
+                    <h4>Grow Better. Harvest More.</h4>
+                    <p>Receive practical vertical farming tips, seasonal growing advice, and product updates.</p>
+                </div>
+                <form class="footer-newsletter-form" id="newsletterForm" novalidate>
+                    <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email address" required autocomplete="email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+            <p class="footer-newsletter-status" id="newsletterStatus"></p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vertical Tech Garden. All rights reserved.</p>
+                <div class="footer-credit">
+                    <a href="assets/All Terms/terms.html">Terms &amp; Conditions</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/warranty.html">Warranty</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/main.js?v=3"></script>
+    <script>
+    (function() {
+        var hash = window.location.hash;
+        if (!hash) return;
+        var target = document.getElementById(hash.substring(1));
+        if (!target) return;
+        function scrollToTarget() {
+            var topbar = document.getElementById('topbar');
+            var navbar = document.getElementById('navbar');
+            var topbarH = topbar ? topbar.offsetHeight : 44;
+            var navbarH = navbar ? navbar.offsetHeight : 72;
+            var offset = topbarH + navbarH + 20;
+            var top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+        if (document.readyState === 'complete') {
+            setTimeout(scrollToTarget, 100);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(scrollToTarget, 100);
+            });
+        }
+    })();
+    </script>
+</body>
+</html>

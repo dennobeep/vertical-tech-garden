@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Vertical Tech Garden - Kenya's leading vertical farming solutions provider. Learn our story, mission, and vision for sustainable food production.">
+    <title>About Us | Vertical Tech Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('assets/Multistorey Garden/MG1.png');
+            animation: heroKenBurns 22s ease-in-out infinite alternate;
+        }
+        @keyframes heroKenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .page-hero-tag, .page-hero-title, .page-hero-subtitle {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .page-hero-tag { animation-delay: 0.1s; }
+        .page-hero-title { animation-delay: 0.28s; }
+        .page-hero-subtitle { animation-delay: 0.46s; }
+        @keyframes heroFadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.85) 0%, rgba(46,79,46,0.6) 50%, rgba(27,58,27,0.7) 100%);
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .page-hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--green-200);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .page-hero-title .text-accent { color: var(--green-300); }
+        .page-hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .page-about { padding-top: 90px; }
+        .page-header { text-align: center; margin-bottom: 48px; }
+        .page-header h1 { font-family: var(--font-display); font-size: 2.5rem; color: var(--green-900); margin-bottom: 12px; }
+        .page-header p { color: var(--gray-600); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+        .page-deco-header { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .page-deco-header .deco-line { width: 40px; height: 2px; background: var(--green-500); border-radius: 2px; }
+        .page-deco-header .deco-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--green-50); border-radius: 50%; color: var(--green-600); font-size: 1.1rem; border: 2px solid var(--green-200); }
+        .page-deco-header--sm .deco-icon { width: 36px; height: 36px; font-size: 0.95rem; }
+        .section-kicker { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--green-700); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-kicker::before, .section-kicker::after { content: ''; width: 26px; height: 2px; background: var(--green-500); display: inline-block; }
+
+        /* --- Magazine story spread --- */
+        .mag-rows { display: flex; flex-direction: column; gap: 72px; margin: 0 0 64px; counter-reset: magrow; }
+        .mag-row { position: relative; display: flex; flex-direction: row; align-items: stretch; gap: 60px; counter-increment: magrow; }
+        .mag-row--alt { flex-direction: row-reverse; }
+        .mag-row-visual { flex: 0 0 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; height: 440px; border-radius: var(--radius-lg); box-shadow: 0 26px 60px rgba(27,58,27,0.16); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .mag-row:hover .mag-row-visual { transform: translateY(-6px); box-shadow: 0 32px 70px rgba(27,58,27,0.22); }
+        .mag-row-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .mag-row:hover .mag-row-img { transform: scale(1.05); }
+        .mag-row-body { flex: 1; padding: 8px 6px; position: relative; }
+        .mag-row-body > * { position: relative; z-index: 1; }
+        .mag-row-body::before { content: counter(magrow, decimal-leading-zero); position: absolute; top: -18px; right: -4px; font-family: var(--font-display); font-size: 6rem; font-weight: 700; color: var(--green-100); line-height: 1; z-index: 0; pointer-events: none; }
+        .mag-row--alt .mag-row-body::before { right: auto; left: -4px; }
+        .mag-row-tag { display: inline-flex; align-items: center; gap: 10px; color: var(--green-700); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .mag-row-tag::before { content: ''; width: 26px; height: 2px; background: var(--green-500); display: inline-block; flex-shrink: 0; }
+        .mag-row--alt .mag-row-tag { flex-direction: row-reverse; }
+        .mag-row-body h3 { font-family: var(--font-display); font-size: 1.9rem; line-height: 1.2; color: var(--green-900); margin-bottom: 14px; }
+        .mag-row-desc { font-size: 0.95rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 14px; }
+        .mag-row-desc:last-child { margin-bottom: 0; }
+        .mag-row-desc::first-letter { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--green-600); float: left; line-height: 0.75; margin: 3px 6px 0 0; }
+        .mag-row-desc--cont::first-letter { all: unset; }
+
+        .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 60px; }
+        .about-card { background: var(--off-white); border-radius: var(--radius-md); padding: 40px 32px; text-align: center; border: 1px solid var(--gray-100); transition: var(--transition); }
+        .about-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .about-card-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--green-50); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem; color: var(--green-700); border: 2px solid var(--green-200); }
+        .about-card h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--green-900); margin-bottom: 12px; }
+        .about-card p { color: var(--gray-600); font-size: 0.9rem; line-height: 1.7; }
+        .about-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 60px; padding: 40px; background: var(--green-50); border-radius: var(--radius-md); border: 1px solid var(--green-100); }
+        .as-item { text-align: center; min-width: 100px; }
+        .as-number { display: block; font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; color: var(--green-700); line-height: 1; margin-bottom: 4px; }
+        .as-label { font-size: 0.85rem; color: var(--gray-500); font-weight: 500; }
+        .about-values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 60px; }
+        .about-value { display: flex; gap: 20px; padding: 28px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-100); transition: var(--transition); }
+        .about-value:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .about-value-icon { width: 48px; height: 48px; min-width: 48px; border-radius: 50%; background: var(--green-50); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--green-700); border: 2px solid var(--green-200); }
+        .about-value h4 { font-family: var(--font-display); font-size: 1.05rem; color: var(--green-900); margin-bottom: 6px; }
+        .about-value p { color: var(--gray-600); font-size: 0.85rem; line-height: 1.6; }
+        .about-cta { text-align: center; margin-bottom: 60px; }
+        .about-cta h2 { font-family: var(--font-display); font-size: 1.8rem; color: var(--green-900); margin-bottom: 12px; }
+        .about-cta p { color: var(--gray-600); margin-bottom: 24px; }
+        @media (max-width: 992px) { .about-grid { grid-template-columns: repeat(2, 1fr); } .about-values { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) {
+            .mag-row, .mag-row--alt { flex-direction: column; gap: 28px; }
+            .mag-row-visual { flex: none; width: 100%; height: 300px; }
+            .mag-row-body { padding: 4px 4px 0; }
+            .mag-row-body::before { font-size: 3.5rem; top: -10px; }
+        }
+        @media (max-width: 768px) { .page-hero-title { font-size: 2.2rem; } .page-hero { height: 40vh; min-height: 300px; } .page-about { padding-top: 56px; } .about-grid { grid-template-columns: 1fr; } .about-stats { gap: 24px; padding: 24px; } }
+
+        /* --- Scroll reveal --- */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .mag-rows .reveal:nth-child(2) { transition-delay: 0.08s; }
+        .about-grid .reveal:nth-child(1) { transition-delay: 0s; }
+        .about-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+        .about-grid .reveal:nth-child(3) { transition-delay: 0.2s; }
+        .about-values .reveal:nth-child(1) { transition-delay: 0s; }
+        .about-values .reveal:nth-child(2) { transition-delay: 0.07s; }
+        .about-values .reveal:nth-child(3) { transition-delay: 0.14s; }
+        .about-values .reveal:nth-child(4) { transition-delay: 0.21s; }
+        .about-values .reveal:nth-child(5) { transition-delay: 0.28s; }
+        .about-values .reveal:nth-child(6) { transition-delay: 0.35s; }
+        .about-stats .reveal:nth-child(1) { transition-delay: 0s; }
+        .about-stats .reveal:nth-child(2) { transition-delay: 0.06s; }
+        .about-stats .reveal:nth-child(3) { transition-delay: 0.12s; }
+        .about-stats .reveal:nth-child(4) { transition-delay: 0.18s; }
+        .about-stats .reveal:nth-child(5) { transition-delay: 0.24s; }
+        .about-stats .reveal:nth-child(6) { transition-delay: 0.3s; }
+
+        /* --- Icon hover polish --- */
+        .about-card-icon, .about-value-icon { transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease, color 0.3s ease; }
+        .about-card:hover .about-card-icon { transform: rotate(-8deg) scale(1.1); background: var(--green-700); color: var(--white); }
+        .about-value:hover .about-value-icon { transform: rotate(8deg) scale(1.12); background: var(--green-700); color: var(--white); }
+
+        /* --- Signature: Growth Rings (5 years, layer by layer) --- */
+        .growth-rings-section { display: grid; grid-template-columns: 360px 1fr; gap: 56px; align-items: center; margin: 0 0 72px; padding: 48px; background: linear-gradient(135deg, var(--off-white) 0%, var(--green-50) 100%); border-radius: var(--radius-lg); border: 1px solid var(--green-100); }
+        .growth-rings-visual { display: flex; align-items: center; justify-content: center; }
+        .growth-rings-visual svg { width: 100%; max-width: 320px; height: auto; overflow: visible; }
+        .growth-ring { fill: none; stroke-width: 2; transform-origin: 160px 160px; opacity: 0; transform: scale(0.6); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .growth-rings-section.is-visible .growth-ring { opacity: 1; transform: scale(1); }
+        .growth-ring:nth-of-type(1) { transition-delay: 0.05s; }
+        .growth-ring:nth-of-type(2) { transition-delay: 0.18s; }
+        .growth-ring:nth-of-type(3) { transition-delay: 0.31s; }
+        .growth-ring:nth-of-type(4) { transition-delay: 0.44s; }
+        .growth-ring:nth-of-type(5) { transition-delay: 0.57s; }
+        .growth-ring-label { font-family: var(--font-primary); font-size: 11px; font-weight: 700; fill: var(--green-800); opacity: 0; transition: opacity 0.6s ease 0.9s; }
+        .growth-rings-section.is-visible .growth-ring-label { opacity: 1; }
+        .growth-ring-seed { fill: var(--green-700); opacity: 0; transform: scale(0); transform-origin: 160px 160px; transition: opacity 0.5s ease 0.75s, transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.75s; }
+        .growth-rings-section.is-visible .growth-ring-seed { opacity: 1; transform: scale(1); }
+        .growth-rings-copy .mag-row-tag { margin-bottom: 14px; }
+        .growth-rings-copy h3 { font-family: var(--font-display); font-size: 1.7rem; color: var(--green-900); margin-bottom: 14px; line-height: 1.25; }
+        .growth-rings-copy p { color: var(--gray-600); font-size: 0.95rem; line-height: 1.75; }
+        @media (max-width: 900px) {
+            .growth-rings-section { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; text-align: center; }
+            .growth-rings-copy { text-align: left; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .page-hero-bg, .page-hero-tag, .page-hero-title, .page-hero-subtitle, .reveal, .growth-ring, .growth-ring-label, .growth-ring-seed { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar" id="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></span>
+                <span><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></span>
+            </div>
+            <div class="topbar-right">
+                <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-has-mega">
+                    <a href="javascript:void(0)">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="nav-mega">
+                        <div class="nav-mega-inner">
+                            <!-- Left sidebar -->
+                            <div class="nav-mega-sidebar">
+                                <div>
+                                    <span class="nav-mega-sidebar-label">Our Range</span>
+                                    <p class="nav-mega-sidebar-title">Grow More<br>With Less</p>
+                                    <p class="nav-mega-sidebar-desc">Five proven systems — from compact home setups to full commercial installations.</p>
+                                    <a href="products.html" class="nav-mega-sidebar-cta">Browse all products <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="nav-mega-stats">
+                                    <span class="nav-mega-stat"><i class="fas fa-seedling"></i> 10× more yield per m²</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-tint"></i> Up to 80% less water</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-map-marker-alt"></i> Nairobi-based &amp; local support</span>
+                                </div>
+                            </div>
+                            <!-- Right content panel -->
+                            <div class="nav-mega-content">
+                                <div class="nav-mega-content-header">
+                                    <span class="nav-mega-content-label">Products</span>
+                                    <span class="nav-mega-content-count">5 Systems</span>
+                                </div>
+                                <div class="nav-mega-grid">
+                                    <a href="products.html#product-multistorey" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-layer-group"></i></span>
+                                        <span class="nav-mega-title">Multistorey Gardens</span>
+                                        <span class="nav-mega-desc">Multi-level systems for maximum yield in compact plots</span>
+                                    </a>
+                                    <a href="products.html#product-tower" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-arrow-up"></i></span>
+                                        <span class="nav-mega-title">Tower Gardens</span>
+                                        <span class="nav-mega-desc">Space-saving vertical towers for balconies &amp; rooftops</span>
+                                    </a>
+                                    <a href="products.html#product-growbag" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-shopping-bag"></i></span>
+                                        <span class="nav-mega-title">Vertical Grow Bags</span>
+                                        <span class="nav-mega-desc">Flexible growing bags for walls, fences &amp; corridors</span>
+                                    </a>
+                                    <a href="products.html#product-irrigation" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-tint"></i></span>
+                                        <span class="nav-mega-title">Irrigation Kits</span>
+                                        <span class="nav-mega-desc">Automated drip systems for worry-free watering</span>
+                                    </a>
+                                    <a href="products.html#product-nft" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-water"></i></span>
+                                        <span class="nav-mega-title">NFT Systems</span>
+                                        <span class="nav-mega-desc">Nutrient Film Technique for soil-free commercial growing</span>
+                                    </a>
+                                </div>
+                                <div class="nav-mega-footer">
+                                    <span class="nav-mega-footer-note"><i class="fas fa-truck"></i> Delivered &amp; installed across Kenya</span>
+                                    <a href="index.html#calculator" class="nav-mega-footer-link">Calculate ROI <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Start Growing</a></li>
+                <li><a href="#" class="nav-cart" id="cartBtn"><i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cartCount">0</span></a></li>
+            </ul>
+            <!-- Cart Overlay -->
+            <div class="cart-overlay" id="cartOverlay"></div>
+            <!-- Cart Drawer -->
+            <div class="cart-drawer" id="cartDrawer">
+                <div class="cart-drawer-header">
+                    <h3>Shopping Cart</h3>
+                    <span id="cartItemCount">0 items</span>
+                    <button class="cart-drawer-close" id="cartClose"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="cart-drawer-body" id="cartBody">
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <strong id="cartTotal">KSh 0</strong>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-outline" id="cartClear">Clear</button>
+                        <button class="btn btn-primary" id="cartCheckout">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-tag">Growing Food. Transforming Lives.</span>
+            <h1 class="page-hero-title">About <span class="text-accent">Vertical Tech Garden</span></h1>
+            <p class="page-hero-subtitle">Founded in 2021, we're a Kenyan agribusiness making food production possible for every household, school, and institution.</p>
+        </div>
+    </section>
+
+    <section class="section page-about">
+        <div class="container">
+
+            <div class="page-header">
+                <div class="page-deco-header">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon"><i class="fas fa-seedling"></i></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h1>About <span class="text-accent">Vertical Tech Garden</span></h1>
+                <p>Growing Food. Transforming Lives.</p>
+            </div>
+
+            <div class="growth-rings-section reveal" id="growthRings">
+                <div class="growth-rings-visual">
+                    <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="growth-ring" cx="160" cy="160" r="36" stroke="#3A7D44"></circle>
+                        <circle class="growth-ring" cx="160" cy="160" r="66" stroke="#4CAF50"></circle>
+                        <circle class="growth-ring" cx="160" cy="160" r="96" stroke="#7CB342"></circle>
+                        <circle class="growth-ring" cx="160" cy="160" r="126" stroke="#8D6E63"></circle>
+                        <circle class="growth-ring" cx="160" cy="160" r="150" stroke="#AED581"></circle>
+                        <circle class="growth-ring-seed" cx="160" cy="160" r="14"></circle>
+                        <text class="growth-ring-label" x="160" y="6" text-anchor="middle">2021 · Founded</text>
+                        <text class="growth-ring-label" x="160" y="316" text-anchor="middle">2026 · 7,000+ Gardens</text>
+                    </svg>
+                </div>
+                <div class="growth-rings-copy">
+                    <span class="mag-row-tag">Layer by Layer</span>
+                    <h3>5 Years of Growth, Ring by Ring</h3>
+                    <p>Just like the stacked layers of a multistorey garden, our growth has come season by season since 2021 — one trusted install, one trained household, one county at a time, building outward into the trusted provider we are today.</p>
+                </div>
+            </div>
+
+            <div class="mag-rows">
+
+                <div class="mag-row reveal" id="story-start">
+                    <div class="mag-row-visual">
+                        <img class="mag-row-img" src="assets/Multistorey Garden/ProductsPage.png" alt="Vertical Tech Garden multistorey system">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">Founded 2021</span>
+                        <h3>Our Story</h3>
+                        <p class="mag-row-desc">Founded in 2021, Vertical Tech Garden is a Kenyan agribusiness dedicated to making food production possible for every household, school, and institution through innovative vertical farming solutions. We believe that everyone — from a family in a Nairobi apartment to a school in rural Kenya — deserves access to fresh, nutritious food grown right where they are.</p>
+                        <p class="mag-row-desc mag-row-desc--cont">Our journey began when we saw the disconnect between Kenya's urbanizing population and its shrinking agricultural land. By combining traditional growing knowledge with modern vertical farming techniques, we created systems that let anyone grow food in any space — no matter how small.</p>
+                    </div>
+                </div>
+
+                <div class="mag-row mag-row--alt reveal" id="story-today">
+                    <div class="mag-row-visual">
+                        <img class="mag-row-img" src="assets/Tower Garden/ProductsPage.jpeg" alt="Tower Garden installation">
+                    </div>
+                    <div class="mag-row-body">
+                        <span class="mag-row-tag">5 Years Strong</span>
+                        <h3>Growing a Movement</h3>
+                        <p class="mag-row-desc">In just 5 years, we have become one of Kenya's trusted providers of multistorey gardening systems, helping families and organizations maximize small spaces while growing fresh, healthy, and organic vegetables. With over 7,000 multistorey gardens installed across more than 35 counties, and 50+ schools and learning institutions served, we've helped thousands of households produce nutritious food at home.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-kicker">Our Foundation</div>
+
+            <div class="about-grid">
+                <div class="about-card reveal">
+                    <div class="about-card-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>To promote sustainable agriculture and food security by providing innovative, affordable, and space-saving farming technologies that enable every Kenyan to grow fresh vegetables regardless of land size.</p>
+                </div>
+                <div class="about-card reveal">
+                    <div class="about-card-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>To be Kenya's leading provider of vertical farming solutions, empowering communities with sustainable food production technologies that improve nutrition, create livelihoods, and protect the environment.</p>
+                </div>
+                <div class="about-card reveal">
+                    <div class="about-card-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Our Promise</h3>
+                    <p>Quality systems, professional installation, and ongoing support. We don't just sell products — we partner with you for your growing journey.</p>
+                </div>
+            </div>
+
+            <div class="section-kicker">Our Impact</div>
+
+            <div class="about-stats">
+                <div class="as-item reveal">
+                    <span class="as-number">2021</span>
+                    <span class="as-label">Founded</span>
+                </div>
+                <div class="as-item reveal">
+                    <span class="as-number">5</span>
+                    <span class="as-label">Years in Business</span>
+                </div>
+                <div class="as-item reveal">
+                    <span class="as-number" data-count-to="7000" data-suffix="+">7,000+</span>
+                    <span class="as-label">Gardens Installed</span>
+                </div>
+                <div class="as-item reveal">
+                    <span class="as-number" data-count-to="50" data-suffix="+">50+</span>
+                    <span class="as-label">Schools Served</span>
+                </div>
+                <div class="as-item reveal">
+                    <span class="as-number" data-count-to="35" data-suffix="+">35+</span>
+                    <span class="as-label">Counties Reached</span>
+                </div>
+                <div class="as-item reveal">
+                    <span class="as-number">1,000s</span>
+                    <span class="as-label">Households Empowered</span>
+                </div>
+            </div>
+
+            <p style="text-align:center;color:var(--gray-600);font-size:1rem;line-height:1.8;max-width:760px;margin:0 auto 60px;">At Vertical Tech Garden, we believe that every home can be a food-producing home. Through our multistorey gardens, hydroponic systems, drip irrigation solutions, and expert training, we continue to empower households, schools, institutions, and communities to grow more using less space while contributing to a healthier and food-secure Kenya.</p>
+
+            <div class="page-header" style="margin-bottom: 32px;">
+                <div class="page-deco-header page-deco-header--sm">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon"><i class="fas fa-heart"></i></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h2 style="font-family:var(--font-display);font-size:1.6rem;color:var(--green-900);margin-bottom:0;">Our <span class="text-accent">Core Values</span></h2>
+            </div>
+
+            <div class="about-values">
+                <div class="about-value reveal">
+                    <div class="about-value-icon"><i class="fas fa-leaf"></i></div>
+                    <div>
+                        <h4>Sustainability</h4>
+                        <p>We're committed to environmentally responsible practices — from the materials we use to the water-saving systems we design. Every solution must leave the planet better than we found it.</p>
+                    </div>
+                </div>
+                <div class="about-value reveal">
+                    <div class="about-value-icon"><i class="fas fa-users"></i></div>
+                    <div>
+                        <h4>Community</h4>
+                        <p>Food brings people together. We build systems that strengthen communities, from school feeding programs to community farming projects that create income and food security.</p>
+                    </div>
+                </div>
+                <div class="about-value reveal">
+                    <div class="about-value-icon"><i class="fas fa-star"></i></div>
+                    <div>
+                        <h4>Quality</h4>
+                        <p>Every system we supply is built to last. We use premium materials, thoughtful design, and rigorous testing to ensure our products perform season after season.</p>
+                    </div>
+                </div>
+                <div class="about-value reveal">
+                    <div class="about-value-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4>Education</h4>
+                        <p>We don't just install systems — we share knowledge. Through hands-on training, workshops, and ongoing support, we empower every grower to succeed.</p>
+                    </div>
+                </div>
+                <div class="about-value reveal">
+                    <div class="about-value-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div>
+                        <h4>Innovation</h4>
+                        <p>We continuously refine our designs based on real-world feedback and emerging research. Our systems evolve to serve you better, year after year.</p>
+                    </div>
+                </div>
+                <div class="about-value reveal">
+                    <div class="about-value-icon"><i class="fas fa-heart"></i></div>
+                    <div>
+                        <h4>Integrity</h4>
+                        <p>Honest advice, fair pricing, and genuine care. We'll recommend what you need — not what we want to sell. Your success is our reputation.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="faq-deco">
+                    <span class="faq-deco-line"></span>
+                    <span class="faq-deco-icon"><i class="fas fa-leaf"></i></span>
+                    <span class="faq-deco-line"></span>
+                </div>
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="text-accent">Questions</span></h2>
+                <p class="section-desc">Everything you need to know about who we are and how we work.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Who is Vertical Tech Garden?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're a Kenyan agribusiness founded in 2021, dedicated to making food production possible for every household, school, and institution through innovative vertical farming solutions like multistorey gardens, tower gardens, and drip irrigation systems.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>How long have you been in business?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We've been growing alongside our customers since 2021 — 5 years and counting. In that time we've become one of Kenya's trusted providers of multistorey gardening systems, with over 7,000 gardens installed nationwide.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Where in Kenya do you operate?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're present in over 35 counties nationwide, with our base in Olekasasi, Ongata Rongai, Nairobi. Wherever you're located, we can arrange delivery, installation, and ongoing support.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>What is your mission?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To promote sustainable agriculture and food security by providing innovative, affordable, and space-saving farming technologies that enable every Kenyan to grow fresh vegetables regardless of land size.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Do you only work with households, or institutions too?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both. We've empowered thousands of households to grow their own food at home, and we've also partnered with 50+ schools and learning institutions on larger installations, training, and ongoing support.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>What makes you different from other suppliers?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We don't just sell systems — we partner with you. Every installation is backed by hands-on training, honest advice, and ongoing support, built on the values of sustainability, quality, community, and integrity that guide everything we do.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>What's your vision for the future?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To be Kenya's leading provider of vertical farming solutions — empowering communities with sustainable food production technologies that improve nutrition, create livelihoods, and protect the environment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>How can I get in touch or get involved?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Reach us by phone, email, or WhatsApp using the details in our footer below, or visit our <a href="contact.html">contact page</a> to request a quote, ask about partnerships, or book training for your school or organization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="precta">
+        <div class="precta-bg"></div>
+        <div class="container precta-inner">
+            <h2 class="precta-title">Ready to <span class="text-accent">Grow With Us</span>?</h2>
+            <p style="color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 28px; max-width: 540px;">Join thousands of Kenyan families, schools, and institutions already growing their own food.</p>
+            <div class="precta-actions">
+                <a href="contact.html" class="btn btn-white">Get in Touch <i class="fas fa-arrow-right"></i></a>
+                <a href="products.html" class="btn btn-outline-white">Explore Systems</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-pattern"></div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo footer-logo">
+                        <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                        <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+                    </div>
+                    <p>Innovative vertical farming solutions for homes, schools, institutions and commercial growers.</p>
+                    <ul class="footer-badges">
+                        <li><i class="fas fa-check"></i> Space Saving</li>
+                        <li><i class="fas fa-check"></i> Water Efficient</li>
+                        <li><i class="fas fa-check"></i> Sustainable</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/254706035470" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Products</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="products.html#product-multistorey">Multistorey Gardens</a></li>
+                        <li><a href="products.html#product-tower">Tower Gardens</a></li>
+                        <li><a href="products.html#product-growbag">Vertical Grow Bags</a></li>
+                        <li><a href="products.html">NFT Systems</a></li>
+                        <li><a href="products.html">Drip Irrigation</a></li>
+                        <li><a href="products.html" class="footer-link-more">All Products <i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Services</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="services.html#installation">Installation</a></li>
+                        <li><a href="services.html#training">Training</a></li>
+                        <li><a href="services.html#consultancy">Consultancy</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                        <li><a href="services.html#commercial">Commercial Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Company</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Olekasasi, Ongata Rongai, Nairobi</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></li>
+                        <li><i class="fas fa-clock"></i> Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM</li>
+                    </ul>
+                    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="footer-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Trust Strip -->
+            <ul class="footer-trust">
+                <li><i class="fas fa-tools"></i> Professional Installation</li>
+                <li><i class="fas fa-headset"></i> Technical Support</li>
+                <li><i class="fas fa-lock"></i> Secure Payments</li>
+                <li><i class="fas fa-truck"></i> Nationwide Delivery</li>
+                <li><i class="fas fa-seedling"></i> Sustainable Farming</li>
+            </ul>
+
+            <!-- Gallery Preview -->
+            <div class="footer-gallery">
+                <h4>Recent Installations</h4>
+                <div class="footer-gallery-grid">
+                    <a href="gallery.html"><img src="assets/Multistorey Garden/MG1.png" alt="Recent multistorey garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T1.png" alt="Recent tower garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Vertical Grow Bags/1.jpeg" alt="Recent vertical grow bag installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Nutrient Film Technique (NFT)/NFT1.png" alt="Recent NFT system installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T3.png" alt="Recent irrigation kit installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T3.jpeg" alt="Recent tower garden installation" loading="lazy"></a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <div class="footer-newsletter-copy">
+                    <h4>Grow Better. Harvest More.</h4>
+                    <p>Receive practical vertical farming tips, seasonal growing advice, and product updates.</p>
+                </div>
+                <form class="footer-newsletter-form" id="newsletterForm" novalidate>
+                    <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email address" required autocomplete="email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+            <p class="footer-newsletter-status" id="newsletterStatus"></p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vertical Tech Garden. All rights reserved.</p>
+                <div class="footer-credit">
+                    <a href="assets/All Terms/terms.html">Terms &amp; Conditions</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/warranty.html">Warranty</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        (function() {
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function animateCount(el) {
+                var target = parseInt(el.getAttribute('data-count-to'), 10);
+                var suffix = el.getAttribute('data-suffix') || '';
+                if (reduceMotion || isNaN(target)) { return; }
+                var start = 0;
+                var duration = 1100;
+                var startTime = null;
+                function step(ts) {
+                    if (!startTime) startTime = ts;
+                    var progress = Math.min((ts - startTime) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var value = Math.floor(start + (target - start) * eased);
+                    el.textContent = value.toLocaleString() + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.textContent = target.toLocaleString() + suffix;
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+
+            var revealEls = document.querySelectorAll('.reveal');
+            var countEls = document.querySelectorAll('.as-number[data-count-to]');
+
+            if (!('IntersectionObserver' in window)) {
+                revealEls.forEach(function(el) { el.classList.add('is-visible'); });
+                countEls.forEach(function(el) { el.textContent = el.getAttribute('data-count-to') + (el.getAttribute('data-suffix') || ''); });
+                return;
+            }
+
+            var revealObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+            var countObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        animateCount(entry.target);
+                        countObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            countEls.forEach(function(el) { countObserver.observe(el); });
+        })();
+    </script>
+
+    <script src="js/main.js?v=3"></script>
+</body>
+</html>

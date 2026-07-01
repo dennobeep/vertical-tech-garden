@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vertical Tech Garden - Project Gallery showcasing our vertical farming installations across Kenya.">
+    <title>Gallery | Vertical Tech Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-image: url('assets/Tower Garden/1.jpeg');
+        }
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,58,27,0.85) 0%, rgba(46,79,46,0.6) 50%, rgba(27,58,27,0.7) 100%);
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .page-hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--green-200);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .page-hero-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .page-hero-title .text-accent { color: var(--green-300); }
+        .page-hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .page-gallery { padding-top: 90px; }
+        .page-gallery .gallery-cta { display: none; }
+        .page-header { text-align: center; margin-bottom: 48px; }
+        .page-header h1 { font-family: var(--font-display); font-size: 2.5rem; color: var(--green-900); margin-bottom: 12px; }
+        .page-header p { color: var(--gray-600); font-size: 1.05rem; }
+        .page-gallery .gallery-filters { margin-bottom: 40px; }
+        .page-gallery .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        .gallery-item-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 2;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.15);
+            pointer-events: none;
+        }
+        .gallery-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            padding: 32px;
+            background: var(--green-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--green-100);
+        }
+        .gs-item { text-align: center; min-width: 100px; }
+        .gs-number { display: block; font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; color: var(--green-700); line-height: 1; margin-bottom: 4px; }
+        .gs-label { font-size: 0.85rem; color: var(--gray-500); font-weight: 500; }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        .gallery-stats .reveal:nth-child(1) { transition-delay: 0s; }
+        .gallery-stats .reveal:nth-child(2) { transition-delay: 0.06s; }
+        .gallery-stats .reveal:nth-child(3) { transition-delay: 0.12s; }
+        .gallery-stats .reveal:nth-child(4) { transition-delay: 0.18s; }
+        @media (max-width: 992px) { .page-gallery .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .page-hero-title { font-size: 2.2rem; } .page-hero { height: 40vh; min-height: 300px; } .page-gallery { padding-top: 56px; } .gallery-stats { gap: 24px; padding: 24px; } }
+        @media (max-width: 480px) { .page-gallery .gallery-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="topbar" id="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></span>
+                <span><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></span>
+            </div>
+            <div class="topbar-right">
+                <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+            </a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-has-mega">
+                    <a href="javascript:void(0)">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="nav-mega">
+                        <div class="nav-mega-inner">
+                            <!-- Left sidebar -->
+                            <div class="nav-mega-sidebar">
+                                <div>
+                                    <span class="nav-mega-sidebar-label">Our Range</span>
+                                    <p class="nav-mega-sidebar-title">Grow More<br>With Less</p>
+                                    <p class="nav-mega-sidebar-desc">Five proven systems — from compact home setups to full commercial installations.</p>
+                                    <a href="products.html" class="nav-mega-sidebar-cta">Browse all products <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                                <div class="nav-mega-stats">
+                                    <span class="nav-mega-stat"><i class="fas fa-seedling"></i> 10× more yield per m²</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-tint"></i> Up to 80% less water</span>
+                                    <span class="nav-mega-stat"><i class="fas fa-map-marker-alt"></i> Nairobi-based &amp; local support</span>
+                                </div>
+                            </div>
+                            <!-- Right content panel -->
+                            <div class="nav-mega-content">
+                                <div class="nav-mega-content-header">
+                                    <span class="nav-mega-content-label">Products</span>
+                                    <span class="nav-mega-content-count">5 Systems</span>
+                                </div>
+                                <div class="nav-mega-grid">
+                                    <a href="products.html#product-multistorey" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-layer-group"></i></span>
+                                        <span class="nav-mega-title">Multistorey Gardens</span>
+                                        <span class="nav-mega-desc">Multi-level systems for maximum yield in compact plots</span>
+                                    </a>
+                                    <a href="products.html#product-tower" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-arrow-up"></i></span>
+                                        <span class="nav-mega-title">Tower Gardens</span>
+                                        <span class="nav-mega-desc">Space-saving vertical towers for balconies &amp; rooftops</span>
+                                    </a>
+                                    <a href="products.html#product-growbag" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-shopping-bag"></i></span>
+                                        <span class="nav-mega-title">Vertical Grow Bags</span>
+                                        <span class="nav-mega-desc">Flexible growing bags for walls, fences &amp; corridors</span>
+                                    </a>
+                                    <a href="products.html#product-irrigation" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-tint"></i></span>
+                                        <span class="nav-mega-title">Irrigation Kits</span>
+                                        <span class="nav-mega-desc">Automated drip systems for worry-free watering</span>
+                                    </a>
+                                    <a href="products.html#product-nft" class="nav-mega-item">
+                                        <span class="nav-mega-icon"><i class="fas fa-water"></i></span>
+                                        <span class="nav-mega-title">NFT Systems</span>
+                                        <span class="nav-mega-desc">Nutrient Film Technique for soil-free commercial growing</span>
+                                    </a>
+                                </div>
+                                <div class="nav-mega-footer">
+                                    <span class="nav-mega-footer-note"><i class="fas fa-truck"></i> Delivered &amp; installed across Kenya</span>
+                                    <a href="index.html#calculator" class="nav-mega-footer-link">Calculate ROI <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Start Growing</a></li>
+                <li><a href="#" class="nav-cart" id="cartBtn"><i class="fas fa-shopping-cart"></i> <span class="cart-count" id="cartCount">0</span></a></li>
+            </ul>
+            <!-- Cart Overlay -->
+            <div class="cart-overlay" id="cartOverlay"></div>
+            <!-- Cart Drawer -->
+            <div class="cart-drawer" id="cartDrawer">
+                <div class="cart-drawer-header">
+                    <h3>Shopping Cart</h3>
+                    <span id="cartItemCount">0 items</span>
+                    <button class="cart-drawer-close" id="cartClose"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="cart-drawer-body" id="cartBody">
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="cart-drawer-footer" id="cartFooter" style="display:none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <strong id="cartTotal">KSh 0</strong>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-outline" id="cartClear">Clear</button>
+                        <button class="btn btn-primary" id="cartCheckout">Request a Quote <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-tag">Our Work</span>
+            <h1 class="page-hero-title">Project <span class="text-accent">Gallery</span></h1>
+            <p class="page-hero-subtitle">Browse our complete range of vertical farming systems and installations across Kenya.</p>
+        </div>
+    </section>
+
+    <section class="section page-gallery">
+        <div class="container">
+            <div class="page-header">
+                <h1>Our <span class="text-accent">Project Gallery</span></h1>
+                <p>Browse our complete range of vertical farming systems — Multistorey Gardens, Tower Gardens, Grow Bags, NFT systems, and Irrigation Kits.</p>
+            </div>
+
+            <div class="gallery-stats">
+                <div class="gs-item reveal">
+                    <span class="gs-number" data-count-to="7000" data-suffix="+">7,000+</span>
+                    <span class="gs-label">Gardens Installed</span>
+                </div>
+                <div class="gs-item reveal">
+                    <span class="gs-number" data-count-to="50" data-suffix="+">50+</span>
+                    <span class="gs-label">Schools Served</span>
+                </div>
+                <div class="gs-item reveal">
+                    <span class="gs-number" data-count-to="35" data-suffix="+">35+</span>
+                    <span class="gs-label">Counties Reached</span>
+                </div>
+                <div class="gs-item reveal">
+                    <span class="gs-number">5</span>
+                    <span class="gs-label">Years of Growth</span>
+                </div>
+            </div>
+
+            <div class="gallery-filters">
+                <button class="gf-btn active" data-filter="multistorey">Multistorey</button>
+                <button class="gf-btn" data-filter="tower">Tower</button>
+                <button class="gf-btn" data-filter="growbag">Grow Bags</button>
+                <button class="gf-btn" data-filter="nft">NFT</button>
+                <button class="gf-btn" data-filter="irrigation">Irrigation</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+
+                <div class="gallery-item" data-category="home" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG1.png" alt="Home vertical garden installation" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Home Multistorey Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="school" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG4.png" alt="School vertical farming project" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>School Multistorey Project</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG5.png" alt="Home multistorey garden" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Home Multistorey Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG8.png" alt="Home multistorey close up" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Multistorey Garden Detail</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG9.png" alt="Commercial vertical farm setup" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Commercial Multistorey Setup</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG10.png" alt="Balcony garden installation" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Balcony Multistorey Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="school" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG11.png" alt="School garden program" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>School Multistorey Program</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/MG Homepage.png" alt="Restaurant vertical garden" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Restaurant Multistorey Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="multistorey">
+                    <img src="assets/Multistorey Garden/ProductsPage.png" alt="Home tower garden" loading="lazy">
+                    <span class="gallery-item-badge">Multistorey</span>
+                    <div class="gallery-overlay"><span>Home Multistorey Installation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="tower">
+                    <img src="assets/Tower Garden/1.jpeg" alt="Tower garden close up" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Tower Garden Plant Detail</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/2.jpeg" alt="Tower garden plants" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Tower Garden Growing</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/3.jpeg" alt="Tower garden setup" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Tower Garden Setup</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/4.jpeg" alt="Tower garden harvest" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Tower Garden Harvest</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="tower">
+                    <img src="assets/Tower Garden/5.jpeg" alt="Tower garden commercial" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Commercial Tower Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="school" data-system="tower">
+                    <img src="assets/Tower Garden/6.jpeg" alt="School tower garden" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>School Tower Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/7.jpeg" alt="Tower garden lush" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Tower Garden Lush Growth</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/T1.png" alt="Tower garden with plants" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Thriving Tower Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/T3.jpeg" alt="Tower garden full" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Full Tower Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="school" data-system="tower">
+                    <img src="assets/Tower Garden/T5.png" alt="Tower garden school program" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>School Tower Garden Program</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="tower">
+                    <img src="assets/Tower Garden/Tower Homepage.png" alt="Tower garden harvest produce" loading="lazy">
+                    <span class="gallery-item-badge">Tower</span>
+                    <div class="gallery-overlay"><span>Tower Garden Produce</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/1.jpeg" alt="Vertical grow bags on wall" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Vertical Grow Bags on Wall</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/2.jpeg" alt="Vertical grow bag plants" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Planting</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="school" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/3.jpeg" alt="School grow bags" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>School Grow Bag Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/Grow Bags Homepage.jpeg" alt="Grow bag fresh produce" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Fresh Harvest</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/ProductsPage.jpeg" alt="Grow bag vegetables" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Vegetables</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/6.jpeg" alt="Grow bag setup" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Setup</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/7.jpeg" alt="Grow bag lush growth" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Lush Growth</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/8.jpeg" alt="Grow bag multi-level" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Multi-Level Grow Bags</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/9.jpeg" alt="Grow bag leafy greens" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Leafy Greens</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/10.jpeg" alt="Grow bag balcony garden" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Balcony Grow Bag Garden</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/11.jpeg" alt="Grow bag healthy plants" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Healthy Grow Bag Plants</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/12.jpeg" alt="Grow bag commercial" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Commercial Grow Bag Setup</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/13.jpeg" alt="Grow bag variety" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Grow Bag Crop Variety</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="school" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/14.jpeg" alt="School grow bag project" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>School Grow Bag Project</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="growbag">
+                    <img src="assets/Vertical Grow Bags/15.jpeg" alt="Grow bag abundant harvest" loading="lazy">
+                    <span class="gallery-item-badge">Grow Bag</span>
+                    <div class="gallery-overlay"><span>Abundant Grow Bag Harvest</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT1.png" alt="NFT system setup" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT System Installation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT3.png" alt="NFT system growing" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT Growing System</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT4.png" alt="NFT system produce" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT Produce</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT5.png" alt="NFT system lettuce" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT Lettuce Production</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT6.png" alt="NFT system rows" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT System Rows</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT7.png" alt="NFT system healthy greens" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT Healthy Greens</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="nft">
+                    <img src="assets/Nutrient Film Technique (NFT)/NFT8.png" alt="NFT system full view" loading="lazy">
+                    <span class="gallery-item-badge">NFT</span>
+                    <div class="gallery-overlay"><span>NFT Full System View</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T3.png" alt="Drip irrigation installation" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Drip Irrigation Installation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T5.jpeg" alt="Drip irrigation system" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Drip Irrigation System</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T6.png" alt="Drip irrigation setup" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Drip Irrigation Setup</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T7.png" alt="Drip irrigation watering" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Drip Irrigation Watering</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/Irrigation Homepage.png" alt="Drip irrigation home" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Home Drip Irrigation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="commercial" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/Hero.png" alt="Drip irrigation commercial" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Commercial Drip Irrigation</span></div>
+                </div>
+
+                <div class="gallery-item" data-category="home" data-system="irrigation">
+                    <img src="assets/Drip Irrigation Kit (For Multistorey Garden)/ProductsPage.png" alt="Drip irrigation close up" loading="lazy">
+                    <span class="gallery-item-badge">Irrigation</span>
+                    <div class="gallery-overlay"><span>Drip Irrigation Close Up</span></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="faq-deco">
+                    <span class="faq-deco-line"></span>
+                    <span class="faq-deco-icon"><i class="fas fa-leaf"></i></span>
+                    <span class="faq-deco-line"></span>
+                </div>
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="text-accent">Questions</span></h2>
+                <p class="section-desc">Everything you need to know about the projects featured in our gallery.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Are these real client projects?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, every photo in this gallery is from an actual installation we've completed for a real client — homes, schools, hotels, hospitals, and community projects across the country. None of these are stock images or renders.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Can I request a setup similar to one in the gallery?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. If a project catches your eye, just let us know which one and we'll use it as a reference point to design something similar for your space, adjusting the size and system type to fit your needs and budget.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>What's the difference between the system types shown?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Multistorey Gardens and Tower Gardens are compact stacked systems ideal for small spaces, Grow Bags offer a flexible low-cost option, NFT systems are a hydroponic setup suited to higher-volume growing, and Irrigation Kits support automated watering for any of the above. Use the filters above to browse by type.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Do you have projects in my area?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We've completed projects across 10 counties and counting. Even if you don't see your specific area represented in the gallery yet, we deliver and install nationwide, so reach out and we'll confirm availability for your location.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Are these home installs or commercial only?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both. The gallery includes a mix of home gardens, school projects, and commercial or institutional installations, so you can browse examples close to the scale you're planning, whether that's a balcony setup or a full institutional system.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>How do you achieve a 95% satisfaction rate?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>It comes down to careful installation, post-install training, and ongoing maintenance support, so clients aren't left figuring things out alone. We follow up after every project to make sure systems are performing as expected.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>How much does a system like these cost?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pricing depends on the system type and scale, ranging from KSh 1,500 for a Multistorey Garden up to KSh 15,000 for an NFT System. Contact us with a project you like from the gallery and we'll give you a personalized quote.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-soil"></div>
+                    <div class="faq-question">
+                        <i class="fas fa-seedling faq-q-icon"></i>
+                        <h3>Can I submit my own project for the gallery?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! If you've installed one of our systems and would like to share photos of your setup, send them our way through the contact page — we love featuring client gardens here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="gallery-lightbox" id="galleryLightbox">
+        <button class="gl-close"><i class="fas fa-times"></i></button>
+        <button class="gl-prev"><i class="fas fa-chevron-left"></i></button>
+        <img class="gl-image" id="glImage" src="" alt="">
+        <button class="gl-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="gl-caption" id="glCaption"></div>
+    </div>
+
+    <section class="precta">
+        <div class="precta-bg"></div>
+        <div class="container precta-inner">
+            <h2 class="precta-title">Ready to <span class="text-accent">Start Growing</span>?</h2>
+            <div class="precta-actions">
+                <a href="contact.html" class="btn btn-white">Get a Consultation</a>
+                <a href="products.html" class="btn btn-outline-white">Start Growing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-pattern"></div>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo footer-logo">
+                        <span class="logo-icon"><i class="fas fa-seedling"></i></span>
+                        <span class="logo-text">Vertical<span class="text-accent">Tech</span> Garden</span>
+                    </div>
+                    <p>Innovative vertical farming solutions for homes, schools, institutions and commercial growers.</p>
+                    <ul class="footer-badges">
+                        <li><i class="fas fa-check"></i> Space Saving</li>
+                        <li><i class="fas fa-check"></i> Water Efficient</li>
+                        <li><i class="fas fa-check"></i> Sustainable</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/1JQtJ6Rgyx/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/vertical_tech_garden?igsh=MWdudWloa3AxeDloMw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com/@vertical_tech_garden" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@verticaltechgarden?si=Wf1KaODeb3jWfbXf" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/254706035470" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Products</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="products.html#product-multistorey">Multistorey Gardens</a></li>
+                        <li><a href="products.html#product-tower">Tower Gardens</a></li>
+                        <li><a href="products.html#product-growbag">Vertical Grow Bags</a></li>
+                        <li><a href="products.html">NFT Systems</a></li>
+                        <li><a href="products.html">Drip Irrigation</a></li>
+                        <li><a href="products.html" class="footer-link-more">All Products <i class="fas fa-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Services</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="services.html#installation">Installation</a></li>
+                        <li><a href="services.html#training">Training</a></li>
+                        <li><a href="services.html#consultancy">Consultancy</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                        <li><a href="services.html#commercial">Commercial Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links footer-accordion">
+                    <button class="footer-accordion-toggle" type="button">
+                        <h4>Company</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="footer-accordion-body">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Quote</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Olekasasi, Ongata Rongai, Nairobi</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:0706035470">0706 035 470</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@verticaltechgarden.co.ke">info@verticaltechgarden.co.ke</a></li>
+                        <li><i class="fas fa-clock"></i> Mon&ndash;Sat, 8:00 AM &ndash; 6:00 PM</li>
+                    </ul>
+                    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="footer-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Trust Strip -->
+            <ul class="footer-trust">
+                <li><i class="fas fa-tools"></i> Professional Installation</li>
+                <li><i class="fas fa-headset"></i> Technical Support</li>
+                <li><i class="fas fa-lock"></i> Secure Payments</li>
+                <li><i class="fas fa-truck"></i> Nationwide Delivery</li>
+                <li><i class="fas fa-seedling"></i> Sustainable Farming</li>
+            </ul>
+
+            <!-- Gallery Preview -->
+            <div class="footer-gallery">
+                <h4>Recent Installations</h4>
+                <div class="footer-gallery-grid">
+                    <a href="gallery.html"><img src="assets/Multistorey Garden/MG1.png" alt="Recent multistorey garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T1.png" alt="Recent tower garden installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Vertical Grow Bags/1.jpeg" alt="Recent vertical grow bag installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Nutrient Film Technique (NFT)/NFT1.png" alt="Recent NFT system installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Drip Irrigation Kit (For Multistorey Garden)/T3.png" alt="Recent irrigation kit installation" loading="lazy"></a>
+                    <a href="gallery.html"><img src="assets/Tower Garden/T3.jpeg" alt="Recent tower garden installation" loading="lazy"></a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <div class="footer-newsletter-copy">
+                    <h4>Grow Better. Harvest More.</h4>
+                    <p>Receive practical vertical farming tips, seasonal growing advice, and product updates.</p>
+                </div>
+                <form class="footer-newsletter-form" id="newsletterForm" novalidate>
+                    <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email address" required autocomplete="email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+            <p class="footer-newsletter-status" id="newsletterStatus"></p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vertical Tech Garden. All rights reserved.</p>
+                <div class="footer-credit">
+                    <a href="assets/All Terms/terms.html">Terms &amp; Conditions</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/privacy.html">Privacy Policy</a>
+                    <span class="footer-legal-sep">|</span>
+                    <a href="assets/All Terms/warranty.html">Warranty</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/254706035470" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        (function() {
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function animateCount(el) {
+                var target = parseInt(el.getAttribute('data-count-to'), 10);
+                var suffix = el.getAttribute('data-suffix') || '';
+                if (reduceMotion || isNaN(target)) { return; }
+                var start = 0;
+                var duration = 1100;
+                var startTime = null;
+                function step(ts) {
+                    if (!startTime) startTime = ts;
+                    var progress = Math.min((ts - startTime) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var value = Math.floor(start + (target - start) * eased);
+                    el.textContent = value.toLocaleString() + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.textContent = target.toLocaleString() + suffix;
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+
+            var revealEls = document.querySelectorAll('.reveal');
+            var countEls = document.querySelectorAll('.gs-number[data-count-to]');
+
+            if (!('IntersectionObserver' in window)) {
+                revealEls.forEach(function(el) { el.classList.add('is-visible'); });
+                countEls.forEach(function(el) { el.textContent = el.getAttribute('data-count-to') + (el.getAttribute('data-suffix') || ''); });
+                return;
+            }
+
+            var revealObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+            var countObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        animateCount(entry.target);
+                        countObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            countEls.forEach(function(el) { countObserver.observe(el); });
+        })();
+    </script>
+
+    <script src="js/main.js?v=3"></script>
+</body>
+</html>
