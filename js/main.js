@@ -2,7 +2,7 @@
    Vertical Tech Garden - Main JavaScript
    ============================================= */
 
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
 
     /* --- Set active nav link based on current page --- */
     var pageName = window.location.pathname.split('/').pop() || 'index.html';
@@ -385,7 +385,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     testiFilters.querySelectorAll('.testi-filter').forEach(b => {
                         b.classList.remove('active');
                         b.setAttribute('aria-selected', 'false');
-                    });
+})();
+
                     btn.classList.add('active');
                     btn.setAttribute('aria-selected', 'true');
                     applyFilter(btn.dataset.filter);
@@ -893,6 +894,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+})();
 
-});
 
