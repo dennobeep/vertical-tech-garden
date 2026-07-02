@@ -791,36 +791,39 @@
             hideFormStatus();
 
             const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                interest: formData.get('interest') || 'Not specified',
-                message: formData.get('message'),
-            };
+            const data = new URLSearchParams();
+            for (const [key, value] of formData) {
+                data.append(key, value);
+            }
 
             try {
-                const response = await fetch('https://formspree.io/f/xyzebvkj', {
+                const response = await fetch(window.location.href, {
                     method: 'POST',
-                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: data.toString(),
                 });
 
-                if (response.ok) {
+                if (response.ok || response.redirected) {
                     showFormStatus('success', 'Thank you! Your message has been sent. We will get back to you shortly.');
                     contactForm.reset();
 
-                    // Also send the message to WhatsApp
-                    var whatsappMsg = 'New Enquiry from ' + data.name + '\n';
-                    whatsappMsg += 'Email: ' + data.email + '\n';
-                    whatsappMsg += 'Phone: ' + (data.phone || 'Not provided') + '\n';
-                    whatsappMsg += 'Interest: ' + data.interest + '\n';
-                    whatsappMsg += 'Message: ' + data.message + '\n';
+                    const name = formData.get('name') || 'Visitor';
+                    const email = formData.get('email') || '';
+                    const phone = formData.get('phone') || '';
+                    const interest = formData.get('interest') || 'Not specified';
+                    const message = formData.get('message') || '';
+
+                    var whatsappMsg = 'New Enquiry from ' + name + '\n';
+                    whatsappMsg += 'Email: ' + email + '\n';
+                    whatsappMsg += 'Phone: ' + phone + '\n';
+                    whatsappMsg += 'Interest: ' + interest + '\n';
+                    whatsappMsg += 'Message: ' + message + '\n';
                     var waUrl = 'https://wa.me/254706035470?text=' + encodeURIComponent(whatsappMsg);
                     window.open(waUrl, '_blank');
                 } else {
-                    const result = await response.json();
-                    showFormStatus('error', result.error || 'Something went wrong. Please try again later.');
+                    var errMsg = 'Something went wrong. Please try again later.';
+                    try { var result = await response.json(); errMsg = result.error || errMsg; } catch(_) {}
+                    showFormStatus('error', errMsg);
                 }
             } catch (err) {
                 showFormStatus('error', 'Unable to send message. Please check your internet connection and try again.');
