@@ -4035,9 +4035,14 @@ body.cart-open {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(135deg, rgba(21, 60, 29, 0.88) 0%, rgba(27, 94, 32, 0.85) 50%, rgba(22, 163, 74, 0.82) 100%),
-        url('../assets/Multistorey Garden/MG1.png') center / cover no-repeat;
+        linear-gradient(135deg, rgba(21, 60, 29, 0.88) 0%, rgba(27, 94, 32, 0.85) 50%, rgba(22, 163, 74, 0.82) 100%);
     z-index: 0;
+}
+
+.precta-bg.loaded {
+    background:
+        linear-gradient(135deg, rgba(21, 60, 29, 0.88) 0%, rgba(27, 94, 32, 0.85) 50%, rgba(22, 163, 74, 0.82) 100%),
+        var(--bg-url) center / cover no-repeat;
 }
 
 .precta-bg::after {

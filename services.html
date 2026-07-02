@@ -266,10 +266,10 @@
             margin: 0;
             padding: 80px 40px;
             overflow: hidden;
-            background-image: url('assets/Multistorey Garden/MG1.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-image: var(--bg-loaded, none);
         }
         .services-cta::before {
             content: '';
@@ -536,7 +536,7 @@
             </div>
         </section>
 
-        <div class="services-cta">
+        <div class="services-cta" data-bg="url('assets/Multistorey Garden/MG1.png')">
             <div class="services-cta-soil"></div>
             <div class="container">
                 <h2>Ready to Get <span class="text-accent">Started</span>?</h2>

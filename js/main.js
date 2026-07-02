@@ -906,6 +906,28 @@
             }
         });
     }
+
+    /* --- Lazy Load Background Images --- */
+    var lazyBgElems = document.querySelectorAll('[data-bg]');
+    if (lazyBgElems.length > 0 && 'IntersectionObserver' in window) {
+        var bgObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var el = entry.target;
+                    var bgVal = el.getAttribute('data-bg');
+                    el.style.setProperty('--bg-url', bgVal);
+                    el.style.setProperty('--bg-loaded', bgVal);
+                    el.classList.add('loaded');
+                    el.removeAttribute('data-bg');
+                    bgObserver.unobserve(el);
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        lazyBgElems.forEach(function(el) {
+            bgObserver.observe(el);
+        });
+    }
 })();
 
 

@@ -412,10 +412,10 @@
             margin: 0;
             padding: 80px 40px;
             overflow: hidden;
-            background-image: url('assets/Multistorey Garden/MG1.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-image: var(--bg-loaded, none);
         }
         .products-cta::before {
             content: '';
@@ -528,7 +528,7 @@
                 <div class="mag-row mag-row--featured">
                     <div class="mag-row-visual mag-row-visual--featured">
                         <div class="mag-row-badge">Best Seller</div>
-                        <img class="mag-row-img" src="assets/Multistorey Garden/MG Homepage.png" alt="Multistorey Garden">
+                        <img class="mag-row-img" src="assets/Multistorey Garden/MG Homepage.png" alt="Multistorey Garden" loading="lazy">
                     </div>
                     <div class="mag-row-body">
                         <span class="mag-row-tag">Most Popular</span>
@@ -582,7 +582,7 @@
 
                 <div class="mag-row mag-row--alt">
                     <div class="mag-row-visual mag-row-visual--alt">
-                        <img class="mag-row-img" src="assets/Tower Garden/Tower Homepage.png" alt="Tower Garden">
+                        <img class="mag-row-img" src="assets/Tower Garden/Tower Homepage.png" alt="Tower Garden" loading="lazy">
                     </div>
                     <div class="mag-row-body">
                         <span class="mag-row-tag">Premium</span>
@@ -625,7 +625,7 @@
 
                 <div class="mag-row">
                     <div class="mag-row-visual">
-                        <img class="mag-row-img" src="assets/Vertical Grow Bags/Grow Bags Homepage.jpeg" alt="Vertical Grow Bags">
+                        <img class="mag-row-img" src="assets/Vertical Grow Bags/Grow Bags Homepage.jpeg" alt="Vertical Grow Bags" loading="lazy">
                     </div>
                     <div class="mag-row-body">
                         <span class="mag-row-tag">Starter</span>
@@ -662,7 +662,7 @@
 
                 <div class="mag-row mag-row--alt">
                     <div class="mag-row-visual mag-row-visual--alt">
-                        <img class="mag-row-img" src="assets/Nutrient Film Technique (NFT)/ProductsPage.png" alt="NFT System">
+                        <img class="mag-row-img" src="assets/Nutrient Film Technique (NFT)/ProductsPage.png" alt="NFT System" loading="lazy">
                     </div>
                     <div class="mag-row-body">
                         <span class="mag-row-tag">Advanced</span>
@@ -707,7 +707,7 @@
 
                 <div class="mag-row">
                     <div class="mag-row-visual">
-                        <img class="mag-row-img" src="assets/Drip Irrigation Kit (For Multistorey Garden)/Irrigation Homepage.png" alt="Irrigation Kits">
+                        <img class="mag-row-img" src="assets/Drip Irrigation Kit (For Multistorey Garden)/Irrigation Homepage.png" alt="Irrigation Kits" loading="lazy">
                     </div>
                     <div class="mag-row-body">
                         <span class="mag-row-tag">Essential</span>
@@ -853,7 +853,7 @@
             </div>
         </section>
 
-        <div class="products-cta">
+        <div class="products-cta" data-bg="url('assets/Multistorey Garden/MG1.png')">
             <div class="products-cta-soil"></div>
             <div class="container">
                 <h2>Need a Custom <span class="text-accent">Solution</span>?</h2>
