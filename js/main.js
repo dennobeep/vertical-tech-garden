@@ -193,15 +193,24 @@
             '.problem-card, .benefit-card, .mag-row, .step-card, .faq-item, .testimonial-card, .ci-item, .calc-result-card, .trust-item, .ts-item, .mag-featured-bg'
         );
         elements.forEach(el => el.classList.add('reveal'));
+
+        /* Show contact page elements immediately */
+        document.querySelectorAll('.contact-card, .contact-social, .contact-form-box, .contact-map').forEach(el => {
+            el.classList.add('visible');
+        });
     }
     setupReveal();
 
     window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', () => {
-        revealOnScroll();
-        /* Trigger hero stats animation */
-        const stats = document.querySelectorAll('.stat-number');
-        stats.forEach(animateCounter);
+    revealOnScroll();
+    /* Animate stats already in view (observer handles the rest) */
+    document.querySelectorAll('.stat-number').forEach(function(el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            animateCounter(el);
+            /* unobserve so it doesn't double-animate */
+            statObserver.unobserve(el);
+        }
     });
 
     /* --- Harvest Calculator --- */
