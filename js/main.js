@@ -687,6 +687,7 @@
             }
             updateCartCount();
             renderCart();
+            openCart();
 
             btn.innerHTML = '<i class="fas fa-check"></i> Added!';
             btn.style.background = 'var(--green-700)';
