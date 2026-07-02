@@ -4747,6 +4747,22 @@ body.cart-open {
     .map-directions { padding: 18px; }
 
     .services-cta { background-attachment: scroll; }
+
+    /* Trust / Stats */
+    .trust-logos { gap: 16px 20px; }
+    .trust-icon { width: 48px; height: 48px; font-size: 1.1rem; }
+    .trust-stats { gap: 20px; padding-top: 24px; }
+    .ts-number { font-size: 1.3rem; }
+    .ts-label { font-size: 0.75rem; }
+
+    /* Benefit cards */
+    .benefit-card { padding: 24px 16px 20px; }
+    .benefit-icon-wrap { width: 40px; height: 40px; font-size: 1rem; }
+
+    /* Problem cards */
+    .problem-card { padding: 24px 16px 24px; }
+    .problem-icon { width: 44px; height: 44px; font-size: 1rem; }
+    .pc-number { font-size: 2rem; }
 }
 
 @media (max-width: 400px) {
