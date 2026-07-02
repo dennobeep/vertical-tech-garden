@@ -1026,6 +1026,13 @@ body.cart-open {
     overflow: hidden;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
