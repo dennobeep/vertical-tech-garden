@@ -2,7 +2,7 @@
    Vertical Tech Garden - Main JavaScript
    ============================================= */
 
-window.initApp = function() {
+(function() {
 
     /* --- Set active nav link based on current page --- */
     var pageName = window.location.pathname.split('/').pop() || 'index.html';
@@ -901,6 +901,6 @@ window.initApp = function() {
             bgObserver.observe(el);
         });
     }
-};
+})();
 
 

@@ -4,7 +4,10 @@
     function allLoaded() {
         if (++loaded < 2) return;
         document.body.style.display = '';
-        if (window.initApp) window.initApp();
+        var s = document.createElement('script');
+        s.src = 'js/main.js?v=6';
+        s.async = false;
+        document.body.appendChild(s);
     }
 
     var h = document.getElementById('header');
