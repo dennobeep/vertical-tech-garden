@@ -3,6 +3,7 @@
    ============================================= */
 
 (function() {
+    function init() {
 
     /* --- Set active nav link based on current page --- */
     var pageName = window.location.pathname.split('/').pop() || 'index.html';
@@ -900,6 +901,21 @@
         lazyBgElems.forEach(function(el) {
             bgObserver.observe(el);
         });
+    }
+    }
+
+    function tryInit() {
+        if (document.querySelector('.nav-links')) {
+            init();
+            return true;
+        }
+        return false;
+    }
+
+    if (!tryInit()) {
+        var check = setInterval(function() {
+            if (tryInit()) clearInterval(check);
+        }, 50);
     }
 })();
 
