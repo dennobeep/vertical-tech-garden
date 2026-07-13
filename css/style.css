@@ -1054,6 +1054,8 @@ body.cart-open {
 @media (max-width: 768px) {
     .nav-toggle { display: flex; }
 
+    .nav-actions { margin-left: auto; }
+
     .nav-links {
         position: fixed;
         top: 0;
