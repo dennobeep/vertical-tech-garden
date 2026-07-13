@@ -7,7 +7,7 @@
         var hidden = body.style.display;
         body.style.display = '';
         var s = document.createElement('script');
-        s.src = 'js/main.js?v=3';
+        s.src = 'js/main.js?v=4';
         s.async = false;
         body.appendChild(s);
     }
