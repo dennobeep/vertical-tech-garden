@@ -784,53 +784,25 @@
             return isNameValid && isEmailValid && isPhoneValid && isMessageValid;
         }
 
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if (!validateForm()) return;
 
-            setLoading(true);
-            hideFormStatus();
-
             const formData = new FormData(contactForm);
-            const data = new URLSearchParams();
-            for (const [key, value] of formData) {
-                data.append(key, value);
-            }
+            const name = formData.get('name') || 'Visitor';
+            const email = formData.get('email') || '';
+            const phone = formData.get('phone') || '';
+            const interest = formData.get('interest') || 'Not specified';
+            const message = formData.get('message') || '';
 
-            try {
-                const response = await fetch(window.location.href, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: data.toString(),
-                });
-
-                if (response.ok || response.redirected) {
-                    showFormStatus('success', 'Thank you! Your message has been sent. We will get back to you shortly.');
-                    contactForm.reset();
-
-                    const name = formData.get('name') || 'Visitor';
-                    const email = formData.get('email') || '';
-                    const phone = formData.get('phone') || '';
-                    const interest = formData.get('interest') || 'Not specified';
-                    const message = formData.get('message') || '';
-
-                    var whatsappMsg = 'New Enquiry from ' + name + '\n';
-                    whatsappMsg += 'Email: ' + email + '\n';
-                    whatsappMsg += 'Phone: ' + phone + '\n';
-                    whatsappMsg += 'Interest: ' + interest + '\n';
-                    whatsappMsg += 'Message: ' + message + '\n';
-                    var waUrl = 'https://wa.me/254706035470?text=' + encodeURIComponent(whatsappMsg);
-                    window.open(waUrl, '_blank');
-                } else {
-                    var errMsg = 'Something went wrong. Please try again later.';
-                    try { var result = await response.json(); errMsg = result.error || errMsg; } catch(_) {}
-                    showFormStatus('error', errMsg);
-                }
-            } catch (err) {
-                showFormStatus('error', 'Unable to send message. Please check your internet connection and try again.');
-            } finally {
-                setLoading(false);
-            }
+            var whatsappMsg = '*New Enquiry from ' + name + '*\n';
+            whatsappMsg += 'Email: ' + email + '\n';
+            whatsappMsg += 'Phone: ' + phone + '\n';
+            whatsappMsg += 'Interest: ' + interest + '\n';
+            whatsappMsg += 'Message: ' + message + '\n';
+            var waUrl = 'https://wa.me/254706035470?text=' + encodeURIComponent(whatsappMsg);
+            window.open(waUrl, '_blank');
+            contactForm.reset();
         });
 
         contactForm.querySelectorAll('input, select, textarea').forEach(field => {
