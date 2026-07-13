@@ -289,7 +289,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .navbar .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .logo {
@@ -320,6 +320,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
     display: flex;
     align-items: center;
     gap: 32px;
+    margin-left: auto;
 }
 
 .nav-links a {
@@ -1030,7 +1031,6 @@ body.cart-open {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-left: auto;
 }
 
 .nav-toggle {
