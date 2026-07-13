@@ -3,13 +3,8 @@
 
     function allLoaded() {
         if (++loaded < 2) return;
-        var body = document.body;
-        var hidden = body.style.display;
-        body.style.display = '';
-        var s = document.createElement('script');
-        s.src = 'js/main.js?v=4';
-        s.async = false;
-        body.appendChild(s);
+        document.body.style.display = '';
+        if (window.initApp) window.initApp();
     }
 
     var h = document.getElementById('header');
